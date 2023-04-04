@@ -5,8 +5,55 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26fa8523-0b17-4927-9e05-2771988b5f8d" name="Changes" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/assets/Attack_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/Flame_jet.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/GameStates.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/PickItem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/PickMap.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/Statemethods.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/gamestates/States.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/inputs/KeyboardHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/inputs/MouseHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/GameWIndow.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/LoadSave.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/src/Week13/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Hero Combat.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Hero Combat.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/batlle/BattleFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/batlle/BattlePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/characters/CharacterFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/characters/CharacterPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/items/ItemFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/items/ItemPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/main/MainFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/main/MainPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/maps/MapsFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Windows/maps/MapsPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/batlle/BattleFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/batlle/BattlePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/characters/CharacterFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/characters/CharacterPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/items/ItemFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/items/ItemPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/main/MainFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/main/MainPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/maps/MapsFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Windows/maps/MapsPanel.java" beforeDir="false" />
+>>>>>>> edbb962852881fb7052e5d1d1776f5f31ec761d5
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,16 +63,20 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+<<<<<<< HEAD
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
+=======
+>>>>>>> edbb962852881fb7052e5d1d1776f5f31ec761d5
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -36,14 +87,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "last_opened_file_path": "D:/Abdhy PPTI 16/CAWU 2/OOP/Code"
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;19&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/kuliah/Cawu2/Object Oriented Programming/java/Hero Combat/assets&quot;
+>>>>>>> edbb962852881fb7052e5d1d1776f5f31ec761d5
   }
-}]]></component>
-  <component name="RunManager" selected="Application.MainFrame">
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\kuliah\Cawu2\Object Oriented Programming\java\Hero Combat\assets" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\kuliah\Cawu2\Object Oriented Programming\java\Hero Combat\assets" />
+      <recent name="D:\kuliah\Cawu2\Object Oriented Programming\java\Hero Combat\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.main.Main">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Game" />
+      <module name="Hero Combat" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="Hero Combat" />
@@ -64,8 +146,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="main.Main" />
+      <module name="Hero Combat" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.main.Main" />
+        <item itemvalue="Application.Game" />
         <item itemvalue="Application.MainFrame" />
         <item itemvalue="Application.Main" />
       </list>
