@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26fa8523-0b17-4927-9e05-2771988b5f8d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Hero Combat.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/batlle/BattleFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/batlle/BattlePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/characters/CharacterFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/characters/CharacterPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/items/ItemFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/items/ItemPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/main/MainFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/main/MainPanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/maps/MapsFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Windows/maps/MapsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,7 +21,12 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -48,7 +39,8 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "D:/Abdhy PPTI 16/CAWU 2/OOP/Code"
   }
 }]]></component>
   <component name="RunManager" selected="Application.MainFrame">
