@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 public class LoadSave {
-    public static final String WIZARD = "hero2.png";
+    public static final String WIZARD = "wizard.png";
     public static BufferedImage getSprite(String fileName){
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
