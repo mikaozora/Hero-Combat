@@ -47,6 +47,16 @@ public class Playing extends States implements Statemethods{
     }
 
     @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_P){
             GameStates.state = GameStates.MENU;

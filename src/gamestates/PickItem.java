@@ -37,6 +37,16 @@ public class PickItem extends States implements Statemethods{
     }
 
     @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
     public void keyPressed(KeyEvent e) {
 
     }
