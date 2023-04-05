@@ -55,6 +55,8 @@ public class Game implements Runnable{
             case PICKMAP:
                 pickMap.update();
                 break;
+            case EXIT:
+                System.exit(0);
             default:
                 break;
         }

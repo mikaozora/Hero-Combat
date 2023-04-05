@@ -27,4 +27,13 @@ public class Constant {
             }
         }
     }
+
+    public static class UI{
+        public static class MenuBtn{
+            public static final int WIDTH_BUTTON = 389;
+            public static final int HEIGHT_BUTTON = 257;
+            public static final int MARGIN_TB = 178/2;
+            public static final int MARGIN_LR = 179/2;
+        }
+    }
 }

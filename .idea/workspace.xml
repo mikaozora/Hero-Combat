@@ -1,5 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2f43ca2e-fc04-4ce5-92b0-79d06e5bab4b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../practice/src/Week13/GameFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/title1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/GameStates.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/GameStates.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickItem.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickItem.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Statemethods.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Statemethods.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/inputs/MouseHandler$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/inputs/MouseHandler$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/inputs/MouseHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/inputs/MouseHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/main/Game$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/title1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/GameStates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/GameStates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/PickChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/PickItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/PickMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickMap.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Statemethods.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Statemethods.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/States.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/inputs/MouseHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/MouseHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/LoadSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LoadSave.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2O0hnR0454C5Zv1HRjb1V8q8Ez9" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
@@ -19,5 +85,16 @@
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2f43ca2e-fc04-4ce5-92b0-79d06e5bab4b" name="Changes" comment="" />
+      <created>1680703576125</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1680703576125</updated>
+    </task>
+    <servers />
   </component>
 </project>
