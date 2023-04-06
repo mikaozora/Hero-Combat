@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="2f43ca2e-fc04-4ce5-92b0-79d06e5bab4b" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/../practice/src/Week13/GameFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -11,12 +12,17 @@
       <change beforePath="$PROJECT_DIR$/src/gamestates/PickChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/inputs/KeyboardHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/inputs/KeyboardHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/GamePanel.java" afterDir="false" />
+=======
+    <list default="true" id="26fa8523-0b17-4927-9e05-2771988b5f8d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< Updated upstream
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -41,6 +47,14 @@
     "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
+=======
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Abdhy PPTI 16\CAWU 2\OOP\Hero-Combat\assets" />
+      <recent name="D:\Abdhy PPTI 16\CAWU 2\OOP\Hero-Combat\src\Assets" />
+    </key>
+  </component>
+>>>>>>> Stashed changes
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
@@ -61,6 +75,7 @@
       </list>
     </recent_temporary>
   </component>
+<<<<<<< Updated upstream
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -70,6 +85,9 @@
       <option name="presentableId" value="Default" />
       <updated>1680703576125</updated>
     </task>
+=======
+  <component name="TaskManager">
+>>>>>>> Stashed changes
     <servers />
   </component>
 </project>
