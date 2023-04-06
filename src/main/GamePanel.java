@@ -18,6 +18,7 @@ public class GamePanel extends JPanel {
         this.addMouseMotionListener(mouseHandler);
         this.setPreferredSize(new Dimension(panelWidth, panelHeight));
         this.setBackground(Color.WHITE);
+        this.setDoubleBuffered(true);
         this.game = game;
     }
 

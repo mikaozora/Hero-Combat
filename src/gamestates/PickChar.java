@@ -55,6 +55,8 @@ public class PickChar extends States implements Statemethods{
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            GameStates.state = GameStates.PICKITEM;
+        }
     }
 }
