@@ -27,8 +27,8 @@ public class Game implements Runnable{
 
     private void initClasses(){
         menu = new Menu(this);
-        playing = new Playing(this);
         pickChar = new PickChar(this);
+//        playing = new Playing(this);
         pickItem = new PickItem(this);
         pickMap = new PickMap(this);
     }
@@ -85,6 +85,10 @@ public class Game implements Runnable{
 
     public Playing getPlaying() {
         return playing;
+    }
+
+    public void setPlaying(Playing playing) {
+        this.playing = playing;
     }
 
     public Menu getMenu() {

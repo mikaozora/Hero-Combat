@@ -5,43 +5,36 @@ import utils.LoadSave;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utils.Constant.WizardConstant.*;
-import static utils.Constant.WizardConstant.getSpriteAmount;
+import static utils.Constant.SamuraiConstant.*;
 
-public class Wizard extends Entity {
-    private BufferedImage[][] hero2;
+public class Samurai extends Entity{
+    private BufferedImage[][] samurai;
     private int aniTick, aniIndex, aniSpeed = 20;
-    private int action = IDLE;
-    private boolean attack3 = false;
+    private int action = DEAD;
     private int width, height;
-
-    public Wizard(int x, int y, int width, int height) {
-        super(x, y, 500, 50, 50);
+    private boolean attack3 = false;
+    public Samurai(int x, int y, int width, int height) {
+        super(x, y, 400, 60, 50);
         this.width = width;
         this.height = height;
         loadAnimations();
     }
-
-
-    public void update() {
-        setAnimation();
-        updateAniTick();
-    }
-
-    public void render(Graphics2D g2) {
-        g2.drawImage(hero2[action][aniIndex], x, y, width, height, null);
-    }
-
-    void loadAnimations() {
-        BufferedImage img = LoadSave.getSprite(LoadSave.WIZARD);
-        hero2 = new BufferedImage[7][14];
-        for (int j = 0; j < hero2.length; j++) {
-            for (int i = 0; i < hero2[j].length; i++) {
-                hero2[j][i] = img.getSubimage(128 * i, 128 * j, 128, 128);
+    void loadAnimations(){
+        BufferedImage img = LoadSave.getSprite(LoadSave.SAMURAI);
+        samurai = new BufferedImage[7][8];
+        for (int j = 0; j < samurai.length; j++) {
+            for (int i = 0; i < samurai[j].length; i++) {
+                samurai[j][i] = img.getSubimage(128 * i, 128 * j, 128, 128);
             }
         }
     }
-
+    public void update(){
+        setAnimation();
+        updateAniTick();
+    }
+    public void render(Graphics2D g2){
+        g2.drawImage(samurai[action][aniIndex], x, y, width, height, null);
+    }
     void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -53,7 +46,6 @@ public class Wizard extends Entity {
             }
         }
     }
-
     void setAnimation() {
         int startAni = action;
         if (attack3) {
@@ -66,16 +58,11 @@ public class Wizard extends Entity {
             resetTick();
         }
     }
-
     private void resetTick() {
         aniTick = 0;
         aniIndex = 0;
     }
-
-
     public void setattack3(boolean attack3) {
         this.attack3 = attack3;
     }
-
-
 }

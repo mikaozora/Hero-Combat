@@ -11,6 +11,10 @@ public class LoadSave {
     public static final String BACKGROUND_DEFAULT = "bg1.png";
     public static final String MENU_TITLE = "menu-title.png";
     public static final String PICKCHAR_TITLE = "pickchar-title.png";
+    public static final String PICKCHAR_BUTTON = "charpick-button.png";
+    public static final String PICKCHAR_CHAR = "pickchar-char.png";
+    public static final String SAMURAI = "samurai.png";
+    public static final String DWARF = "warior.png";
     public static BufferedImage getSprite(String fileName){
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
