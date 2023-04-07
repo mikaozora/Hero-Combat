@@ -5,43 +5,38 @@ import utils.LoadSave;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import static utils.Constant.WizardConstant.*;
-import static utils.Constant.WizardConstant.getSpriteAmount;
+import static utils.Constant.DwarfConstant.*;
 
-public class Wizard extends Entity {
-    private BufferedImage[][] hero2;
+public class Dwarf extends Entity{
+    private BufferedImage[][] dwarf;
     private int aniTick, aniIndex, aniSpeed = 20;
     private int action = IDLE;
     private boolean attack3 = false;
     private int width, height;
 
-    public Wizard(int x, int y, int width, int height) {
-        super(x, y, 500, 50, 50);
+    public Dwarf(int x, int y, int width, int height) {
+        super(x, y, 600, 40, 50);
         this.width = width;
         this.height = height;
         loadAnimations();
     }
-
-
+    void loadAnimations() {
+        BufferedImage img = LoadSave.getSprite(LoadSave.DWARF);
+        dwarf = new BufferedImage[7][6];
+        for (int j = 0; j < dwarf.length; j++) {
+            for (int i = 0; i < dwarf[j].length; i++) {
+                dwarf[j][i] = img.getSubimage(96 * i, 96 * j, 96, 96);
+            }
+        }
+    }
     public void update() {
         setAnimation();
         updateAniTick();
     }
 
     public void render(Graphics2D g2) {
-        g2.drawImage(hero2[action][aniIndex], x, y, width, height, null);
+        g2.drawImage(dwarf[action][aniIndex], x, y, width, height, null);
     }
-
-    void loadAnimations() {
-        BufferedImage img = LoadSave.getSprite(LoadSave.WIZARD);
-        hero2 = new BufferedImage[7][14];
-        for (int j = 0; j < hero2.length; j++) {
-            for (int i = 0; i < hero2[j].length; i++) {
-                hero2[j][i] = img.getSubimage(128 * i, 128 * j, 128, 128);
-            }
-        }
-    }
-
     void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -76,6 +71,4 @@ public class Wizard extends Entity {
     public void setattack3(boolean attack3) {
         this.attack3 = attack3;
     }
-
-
 }

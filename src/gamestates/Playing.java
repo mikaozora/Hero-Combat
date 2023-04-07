@@ -1,5 +1,7 @@
 package gamestates;
 
+import entities.Dwarf;
+import entities.Samurai;
 import entities.Wizard;
 import main.Game;
 
@@ -7,38 +9,78 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class Playing extends States implements Statemethods{
-    private Wizard wizard;
+import static utils.Constant.*;
 
-    public Playing(Game game) {
+public class Playing extends States implements Statemethods {
+    private Wizard wizardP1, wizardP2;
+    private Samurai samuraiP1, samuraiP2;
+    private Dwarf dwarfP1, dwarfP2;
+    private final int scale = 3;
+    private PlayerStates p1, p2;
+
+    public Playing(Game game, PlayerStates p1, PlayerStates p2) {
         super(game);
+        this.p1 = p1;
+        this.p2 = p2;
         initClasses();
     }
 
 
-    private void initClasses(){
-        wizard = new Wizard(10, 10);
+    private void initClasses() {
+        wizardP1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
+        wizardP2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
+        samuraiP1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
+        samuraiP2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
+        dwarfP1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+        dwarfP2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
     }
 
-    public Wizard getWizard(){
-        return wizard;
-    }
 
     @Override
     public void update() {
-        wizard.update();
+        wizardP1.update();
+        wizardP2.update();
+        samuraiP1.update();
+        samuraiP2.update();
+        dwarfP1.update();
+        dwarfP2.update();
     }
 
     @Override
     public void draw(Graphics2D g2) {
-        wizard.render(g2);
+        if (p1 == PlayerStates.WIZARD) {
+            wizardP1.render(g2);
+        } else if (p1 == PlayerStates.SAMURAI) {
+            samuraiP1.render(g2);
+        }else if(p1 == PlayerStates.DWARF){
+            dwarfP1.render(g2);
+        }
+        if (p2 == PlayerStates.WIZARD) {
+            wizardP2.render(g2);
+        } else if (p2 == PlayerStates.SAMURAI) {
+            samuraiP2.render(g2);
+        }else if(p2 == PlayerStates.DWARF){
+            dwarfP2.render(g2);
+        }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getButton() == MouseEvent.BUTTON1){
-            wizard.setattack3(true);
+        if (p1 == PlayerStates.WIZARD) {
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                wizardP1.setattack3(true);
+            }
+        }else if(p1 == PlayerStates.SAMURAI){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                samuraiP1.setattack3(true);
+            }
+        }else if(p1 == PlayerStates.DWARF){
+            if (e.getButton() == MouseEvent.BUTTON1) {
+                dwarfP1.setattack3(true);
+            }
         }
+
+
     }
 
     @Override
@@ -58,8 +100,29 @@ public class Playing extends States implements Statemethods{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_P){
+        if (e.getKeyCode() == KeyEvent.VK_P) {
             GameStates.state = GameStates.MENU;
         }
+        if (p2 == PlayerStates.WIZARD) {
+            if (e.getKeyCode() == KeyEvent.VK_L) {
+                wizardP2.setattack3(true);
+            }
+        }else if(p2 == PlayerStates.SAMURAI){
+            if (e.getKeyCode() == KeyEvent.VK_L) {
+                samuraiP2.setattack3(true);
+            }
+        }else if(p2 == PlayerStates.DWARF){
+            if (e.getKeyCode() == KeyEvent.VK_L) {
+                dwarfP2.setattack3(true);
+            }
+        }
+    }
+
+    public void setP1(PlayerStates p1) {
+        this.p1 = p1;
+    }
+
+    public void setP2(PlayerStates p2) {
+        this.p2 = p2;
     }
 }
