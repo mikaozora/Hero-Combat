@@ -5,49 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="181e21ff-8d3b-48fc-8658-441b9a9ad183" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/entities/Skill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/AlmoGarden.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/KingGarden.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/GameStates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/MapStates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PlayerStates.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Statemethods.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/inputs/KeyboardHandler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/inputs/KeyboardHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/inputs/MouseHandler$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/inputs/MouseHandler.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/GameWIndow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/Charpick.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/CharpickButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/MapsButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/MapsImg.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/MenuButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$DwarfConstant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$PlayerPosition.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$SamuraiConstant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$Charpick.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$CharpickBtn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsBtn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsImg.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MenuBtn.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$WizardConstant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/Charpick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/Charpick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Dwarf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Dwarf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Samurai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Samurai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/PickChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/Charpick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Charpick.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

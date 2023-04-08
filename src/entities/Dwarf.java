@@ -16,6 +16,7 @@ public class Dwarf extends Entity{
 
     public Dwarf(int x, int y, int width, int height) {
         super(x, y, 600, 40, 50);
+        initSkills();
         this.width = width;
         this.height = height;
         loadAnimations();
@@ -65,6 +66,12 @@ public class Dwarf extends Entity{
     private void resetTick() {
         aniTick = 0;
         aniIndex = 0;
+    }
+    void initSkills(){
+        skills.add(new Skill("Basic", 0, atk));
+        skills.add(new Skill("Execute", 1, atk+50));
+        skills.add(new Skill("Fury", 2, atk+70));
+        skills.add(new Skill("Rage", 3, def+90));
     }
 
 
