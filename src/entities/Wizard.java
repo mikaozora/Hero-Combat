@@ -4,6 +4,7 @@ import utils.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import static utils.Constant.WizardConstant.*;
 import static utils.Constant.WizardConstant.getSpriteAmount;
@@ -17,6 +18,7 @@ public class Wizard extends Entity {
 
     public Wizard(int x, int y, int width, int height) {
         super(x, y, 500, 50, 50);
+        initSkills();
         this.width = width;
         this.height = height;
         loadAnimations();
@@ -40,6 +42,12 @@ public class Wizard extends Entity {
                 hero2[j][i] = img.getSubimage(128 * i, 128 * j, 128, 128);
             }
         }
+    }
+    void initSkills(){
+        skills.add(new Skill("Basic", 0, atk));
+        skills.add(new Skill("Prick", 1, atk+50));
+        skills.add(new Skill("Fireball", 2, atk+70));
+        skills.add(new Skill("Fire jet", 3, atk+90));
     }
 
     void updateAniTick() {
@@ -71,6 +79,7 @@ public class Wizard extends Entity {
         aniTick = 0;
         aniIndex = 0;
     }
+
 
 
     public void setattack3(boolean attack3) {

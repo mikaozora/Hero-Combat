@@ -1,5 +1,7 @@
 package gamestates;
 
+import entities.Dwarf;
+import entities.Samurai;
 import entities.Wizard;
 import main.Game;
 import ui.Charpick;
@@ -21,6 +23,8 @@ public class PickChar extends States implements Statemethods {
     private int player = 1;
     private PlayerStates p1 = PlayerStates.NULL, p2 = PlayerStates.NULL, temp;
     private Wizard wizard;
+    private Samurai samurai;
+    private Dwarf dwarf;
 
     public PickChar(Game game) {
         super(game);
@@ -52,6 +56,8 @@ public class PickChar extends States implements Statemethods {
 
     private void initClasses(){
         wizard = new Wizard(0, 0, WizardConstant.WIDTH, WizardConstant.HEIGHT);
+        samurai = new Samurai(0, 0, SamuraiConstant.WIDTH, SamuraiConstant.HEIGHT);
+        dwarf = new Dwarf(0, 0, DwarfConstant.WIDTH, DwarfConstant.HEIGHT);
     }
     @Override
     public void draw(Graphics2D g2) {
@@ -60,7 +66,7 @@ public class PickChar extends States implements Statemethods {
         for (Charpick cp : chars) {
             cp.draw(g2);
         }
-        new Charpick().drawDetails(g2, wizard);
+        new Charpick().drawDetails(g2, wizard, samurai, dwarf);
         g2.drawString("Player: " + player, 100, 100);
         button.draw(g2);
     }

@@ -15,6 +15,7 @@ public class Samurai extends Entity{
     private boolean attack3 = false;
     public Samurai(int x, int y, int width, int height) {
         super(x, y, 400, 60, 50);
+        initSkills();
         this.width = width;
         this.height = height;
         loadAnimations();
@@ -61,6 +62,12 @@ public class Samurai extends Entity{
     private void resetTick() {
         aniTick = 0;
         aniIndex = 0;
+    }
+    void initSkills(){
+        skills.add(new Skill("Basic", 0, atk));
+        skills.add(new Skill("Slash", 1, atk+50));
+        skills.add(new Skill("Slice", 2, atk+70));
+        skills.add(new Skill("Heal", 3, hp+90));
     }
     public void setattack3(boolean attack3) {
         this.attack3 = attack3;
