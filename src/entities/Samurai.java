@@ -20,7 +20,7 @@ public class Samurai extends Entity{
         this.height = height;
         loadAnimations();
     }
-    void loadAnimations(){
+    public void loadAnimations(){
         BufferedImage img = LoadSave.getSprite(LoadSave.SAMURAI);
         samurai = new BufferedImage[7][8];
         for (int j = 0; j < samurai.length; j++) {
@@ -69,7 +69,7 @@ public class Samurai extends Entity{
         skills.add(new Skill("Slice", 2, atk+70));
         skills.add(new Skill("Heal", 3, hp+90));
     }
-    public void setattack3(boolean attack3) {
+    public void setAttack3(boolean attack3) {
         this.attack3 = attack3;
     }
 }

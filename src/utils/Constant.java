@@ -134,5 +134,8 @@ public class Constant {
 //            public static final int MARGIN_TB_MAP = (685-381)/2;
 //            public static final int MARGIN_LR_MAP = (383-79)/2;
         }
+        public static class SkillButton{
+            public static final int SIZE = 89;
+        }
     }
 }

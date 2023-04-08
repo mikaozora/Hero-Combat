@@ -4,6 +4,7 @@ import main.Game;
 import ui.*;
 import ui.Charpick;
 import ui.MapsImg;
+import ui.SkillButton;
 import utils.Constant;
 
 import java.awt.event.MouseEvent;
@@ -36,6 +37,9 @@ public class States {
 
     public boolean isIn(MapsImg mb, MouseEvent e){
         return mb.getBounds().contains(e.getX(), e.getY());
+    }
+    public boolean isInSb(SkillButton sb, MouseEvent e){
+        return sb.getBounds().contains(e.getX(), e.getY());
     }
 
 //    public boolean isInSkill1(PlayingSkillButton mb,MouseEvent e){
