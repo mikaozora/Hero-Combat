@@ -23,11 +23,14 @@ public class PickMap extends States implements Statemethods{
     MapsImg MapsImg[] = new MapsImg[2];
     MapStates temp, mapGame = MapStates.NULL;
     PlayerStates p1, p2;
+    ItemStates p1_item, p2_item;
 
-    public PickMap(Game game, PlayerStates p1, PlayerStates p2) {
+    public PickMap(Game game, PlayerStates p1, PlayerStates p2,ItemStates p1_item, ItemStates p2_item) {
         super(game);
         this.p1 = p1;
         this.p2 = p2;
+        this.p1_item = p1_item;
+        this.p2_item = p2_item;
         importImg();
         loadBtn();
         loadImg();
@@ -158,7 +161,7 @@ public class PickMap extends States implements Statemethods{
         if(isIn(chooseMapBtn, e)){
             if (chooseMapBtn.isMousePressed()){
                 if (mapGame != MapStates.NULL){
-                    game.setPlaying(new Playing(game, p1, p2, mapGame));
+                    game.setPlaying(new Playing(game, p1, p2,p1_item,p2_item, mapGame));
                     chooseMapBtn.applyGameState();
                 }
             }

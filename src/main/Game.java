@@ -29,8 +29,8 @@ public class Game implements Runnable{
         menu = new Menu(this);
         pickChar = new PickChar(this);
 //        playing = new Playing(this);
-        pickItem = new PickItem(this);
-        pickMap = new PickMap(this, null, null);
+        pickItem = new PickItem(this,null,null);
+        pickMap = new PickMap(this, null, null,null,null);
     }
 
     public void startGame(){

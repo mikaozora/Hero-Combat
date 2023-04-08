@@ -38,8 +38,15 @@ public class States {
     public boolean isIn(MapsImg mb, MouseEvent e){
         return mb.getBounds().contains(e.getX(), e.getY());
     }
-    public boolean isInSb(SkillButton sb, MouseEvent e){
+    public boolean isInSb(SkillButton sb, MouseEvent e) {
         return sb.getBounds().contains(e.getX(), e.getY());
+    }
+    public boolean isInIb(ItempickButton ib, MouseEvent e){
+        return ib.getBounds().contains(e.getX() - MARGIN_LR_MAP, e.getY() - MARGIN_TB_MAP);
+    }
+
+    public boolean isInIp(ItemPick ip, MouseEvent e){
+        return ip.getBounds().contains(e.getX(), e.getY());
     }
 
 //    public boolean isInSkill1(PlayingSkillButton mb,MouseEvent e){
