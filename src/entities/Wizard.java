@@ -34,7 +34,7 @@ public class Wizard extends Entity {
         g2.drawImage(hero2[action][aniIndex], x, y, width, height, null);
     }
 
-    void loadAnimations() {
+    public void loadAnimations() {
         BufferedImage img = LoadSave.getSprite(LoadSave.WIZARD);
         hero2 = new BufferedImage[7][14];
         for (int j = 0; j < hero2.length; j++) {
@@ -53,7 +53,7 @@ public class Wizard extends Entity {
     public void runP1(){
         while(x < 1265){
             for (int i = 0; i < 200; i++) {
-                System.out.println(".");
+//                System.out.println(".");
             }
             x++;
         }
@@ -114,8 +114,7 @@ public class Wizard extends Entity {
     }
 
 
-
-    public void setattack3(boolean attack3) {
+    public void setAttack3(boolean attack3) {
         this.attack3 = attack3;
     }
 

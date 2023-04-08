@@ -21,7 +21,7 @@ public class Dwarf extends Entity{
         this.height = height;
         loadAnimations();
     }
-    void loadAnimations() {
+    public void loadAnimations() {
         BufferedImage img = LoadSave.getSprite(LoadSave.DWARF);
         dwarf = new BufferedImage[7][6];
         for (int j = 0; j < dwarf.length; j++) {
@@ -75,7 +75,7 @@ public class Dwarf extends Entity{
     }
 
 
-    public void setattack3(boolean attack3) {
+    public void setAttack3(boolean attack3) {
         this.attack3 = attack3;
     }
 }

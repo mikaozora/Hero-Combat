@@ -28,7 +28,6 @@ public class MapsButton{
 
     private void initBounds() {
         bounds = new Rectangle(x, y, 381, 79);
-
     }
 
     private void loadImg() {

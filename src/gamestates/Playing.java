@@ -4,6 +4,7 @@ import entities.*;
 import main.Game;
 import ui.MapsImg;
 import ui.PlayingSkillButton;
+import ui.SkillButton;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -13,16 +14,14 @@ import java.awt.image.BufferedImage;
 import static utils.Constant.*;
 
 public class Playing extends States implements Statemethods {
-    private Wizard wizardP1, wizardP2;
-    private Samurai samuraiP1, samuraiP2;
-    private Dwarf dwarfP1, dwarfP2;
+    private Entity player1, player2;
     private AlmoGarden almo;
     private KingGarden kingGarden;
     private final int scale = 3;
     private PlayerStates p1, p2;
     private MapStates map;
     BufferedImage skills[] = new BufferedImage[4];
-    PlayingSkillButton skillP1, skillP2;
+    private SkillButton[] skillButtons = new SkillButton[8];
 
     public Playing(Game game, PlayerStates p1, PlayerStates p2, MapStates map) {
         super(game);
@@ -30,32 +29,47 @@ public class Playing extends States implements Statemethods {
         this.p2 = p2;
         this.map = map;
         initClasses();
+        loadSkill();
     }
-
 
     private void initClasses() {
-        skillP1 = new PlayingSkillButton(SkillPosition.xPosBasicAtkP1, SkillPosition.yPosBasicAtkP1, SkillPosition.xPosSkill1P1, SkillPosition.yPosSkill1P1, SkillPosition.xPosSkill2P1, SkillPosition.yPosSkill2P1, SkillPosition.xPosUltP1, SkillPosition.yPosUltP1);
-        skillP2 = new PlayingSkillButton(SkillPosition.xPosBasicAtkP2, SkillPosition.yPosBasicAtkP2, SkillPosition.xPosSkill1P2, SkillPosition.yPosSkill1P2, SkillPosition.xPosSkill2P2, SkillPosition.yPosSkill2P2, SkillPosition.xPosUltP2, SkillPosition.yPosUltP2);
-        wizardP1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
-        wizardP2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
-        samuraiP1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
-        samuraiP2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
-        dwarfP1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
-        dwarfP2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+        if (p1 == PlayerStates.WIZARD) {
+            player1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
+        } else if (p1 == PlayerStates.SAMURAI) {
+            player1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
+        }else if(p1 == PlayerStates.DWARF){
+            player1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+        }
+        if (p2 == PlayerStates.WIZARD) {
+            player2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
+        } else if (p2 == PlayerStates.SAMURAI) {
+            player2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
+        }else if(p2 == PlayerStates.DWARF){
+            player2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+        }
         almo = new AlmoGarden(0, 0);
         kingGarden = new KingGarden(0, 0);
+
     }
 
+    private void loadSkill(){
+        skillButtons[0] = new SkillButton(57, 205, 0, player1, 0);
+        skillButtons[1] = new SkillButton(57, 329, 1, player1, 0);
+        skillButtons[2] = new SkillButton(57, 454, 2, player1, 0);
+        skillButtons[3] = new SkillButton(57, 579, 3, player1, 0);
+        skillButtons[4] = new SkillButton(1251, 205, 0, player2, 0);
+        skillButtons[5] = new SkillButton(1251, 329, 1, player2, 0);
+        skillButtons[6] = new SkillButton(1251, 454, 2, player2, 0);
+        skillButtons[7] = new SkillButton(1251, 579, 3, player2, 0);
+    }
 
     @Override
     public void update() {
-        wizardP1.update();
-        wizardP2.update();
-        samuraiP1.update();
-        samuraiP2.update();
-        dwarfP1.update();
-        dwarfP2.update();
-
+        player1.update();
+        player2.update();
+        for(SkillButton sb : skillButtons){
+            sb.update();
+        }
     }
 
     @Override
@@ -65,47 +79,29 @@ public class Playing extends States implements Statemethods {
         }else if(map == MapStates.KING_GARDEN){
             kingGarden.render(g2);
         }
-
-        if (p1 == PlayerStates.WIZARD) {
-            wizardP1.render(g2);
-            skillP1.wizardSkill();
-        } else if (p1 == PlayerStates.SAMURAI) {
-            samuraiP1.render(g2);
-            skillP1.samuraiSKill();
-        }else if(p1 == PlayerStates.DWARF){
-            dwarfP1.render(g2);
-            skillP1.warriorSkill();
-        }
-        if (p2 == PlayerStates.WIZARD) {
-            wizardP2.render(g2);
-            skillP2.wizardSkill();
-        } else if (p2 == PlayerStates.SAMURAI) {
-            samuraiP2.render(g2);
-            skillP2.samuraiSKill();
-        }else if(p2 == PlayerStates.DWARF){
-            dwarfP2.render(g2);
-            skillP2.warriorSkill();
+        player1.render(g2);
+        player2.render(g2);
+        drawDetails(g2);
+        for(SkillButton sb : skillButtons){
+            sb.draw(g2);
         }
 
-        skillP1.draw(g2);
-        skillP2.draw(g2);
         
     }
 
+    public void drawDetails(Graphics2D g2){
+        g2.setColor(Color.white);
+        g2.drawString("Hp:"+player1.getHp(), 10, 50);
+        g2.drawString("ATK:"+player1.getAtk(), 60, 50);
+        g2.drawString("DEF:"+player1.getDef(), 110, 50);
+        g2.drawString("Hp:"+player2.getHp(), 1000, 50);
+        g2.drawString("ATK:"+player2.getAtk(), 1050, 50);
+        g2.drawString("DEF:"+player2.getDef(), 1100, 50);
+    }
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (p1 == PlayerStates.WIZARD) {
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                wizardP1.setattack3(true);
-            }
-        }else if(p1 == PlayerStates.SAMURAI){
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                samuraiP1.setattack3(true);
-            }
-        }else if(p1 == PlayerStates.DWARF){
-            if (e.getButton() == MouseEvent.BUTTON1) {
-                dwarfP1.setattack3(true);
-            }
+        if(e.getButton() == MouseEvent.BUTTON1){
+            player1.setAttack3(true);
         }
 
 
@@ -141,18 +137,8 @@ public class Playing extends States implements Statemethods {
         if (e.getKeyCode() == KeyEvent.VK_P) {
             GameStates.state = GameStates.MENU;
         }
-        if (p2 == PlayerStates.WIZARD) {
-            if (e.getKeyCode() == KeyEvent.VK_L) {
-                wizardP2.setattack3(true);
-            }
-        }else if(p2 == PlayerStates.SAMURAI){
-            if (e.getKeyCode() == KeyEvent.VK_L) {
-                samuraiP2.setattack3(true);
-            }
-        }else if(p2 == PlayerStates.DWARF){
-            if (e.getKeyCode() == KeyEvent.VK_L) {
-                dwarfP2.setattack3(true);
-            }
+        if(e.getKeyCode() == KeyEvent.VK_L){
+            player2.setAttack3(true);
         }
     }
 

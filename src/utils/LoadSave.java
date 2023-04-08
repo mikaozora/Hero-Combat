@@ -30,6 +30,9 @@ public class LoadSave {
     public static final String WARRIOR_SKILL1 = "warriorSkill1.png";
     public static final String WARRIOR_SKILL2 = "warriorSkill2.png";
     public static final String WARRIOR_ULT = "warriorUlt.png";
+    public static final String WIZARD_SKILL = "wizardSkill.png";
+    public static final String DWARF_SKILL = "dwarfSkill.png";
+    public static final String SAMURAI_SKILL = "samuraiSkill.png";
 
     public static BufferedImage getSprite(String fileName){
         BufferedImage img = null;

@@ -1,9 +1,11 @@
 package entities;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Entity {
     protected int x, y, hp, atk, def;
+    private boolean attack3;
     protected ArrayList<Skill> skills;
     public Entity(int x, int y, int hp, int atk, int def) {
         this.x = x;
@@ -42,4 +44,8 @@ public abstract class Entity {
         return skills;
     }
 
+    public abstract void loadAnimations();
+    public abstract void render(Graphics2D g2);
+    public abstract void update();
+    public abstract void setAttack3(boolean attack3);
 }

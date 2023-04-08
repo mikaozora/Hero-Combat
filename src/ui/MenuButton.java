@@ -34,7 +34,6 @@ public class MenuButton {
         for (int i = 0; i < img.length; i++) {
             img[i] = temp.getSubimage(i * WIDTH_BUTTON, rowIndex * HEIGHT_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
         }
-
     }
 
     public void draw(Graphics2D g2){
