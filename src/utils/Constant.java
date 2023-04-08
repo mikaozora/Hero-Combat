@@ -86,6 +86,20 @@ public class Constant {
         public static final int yPosP2 = 195;
     }
 
+    public static class SkillPosition{
+        public static final int xPosBasicAtkP1 = 60, yPosBasicAtkP1 = 600;
+        public static final int xPosSkill1P1 = 60, yPosSkill1P1 = 470;
+        public static final int xPosSkill2P1 = 60, yPosSkill2P1 = 340;
+        public static final int xPosUltP1 = 60, yPosUltP1 = 210;
+
+
+        public static final int xPosBasicAtkP2 = 1250, yPosBasicAtkP2 = 600;
+        public static final int xPosSkill1P2 = 1250, yPosSkill1P2 = 470;
+        public static final int xPosSkill2P2 = 1250, yPosSkill2P2 = 340;
+        public static final int xPosUltP2 = 1250, yPosUltP2 = 210;
+
+    }
+
     public static class UI{
         public static class MenuBtn{
             public static final int WIDTH_BUTTON = 389;

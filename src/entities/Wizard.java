@@ -13,7 +13,7 @@ public class Wizard extends Entity {
     private BufferedImage[][] hero2;
     private int aniTick, aniIndex, aniSpeed = 20;
     private int action = IDLE;
-    private boolean attack3 = false;
+    private boolean attack3 = false, attack2 = false, attack1 = false, basicAtk = false;
     private int width, height;
 
     public Wizard(int x, int y, int width, int height) {
@@ -50,6 +50,15 @@ public class Wizard extends Entity {
         skills.add(new Skill("Fire jet", 3, atk+90));
     }
 
+    public void runP1(){
+        while(x < 1265){
+            for (int i = 0; i < 200; i++) {
+                System.out.println(".");
+            }
+            x++;
+        }
+    }
+
     void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -64,11 +73,35 @@ public class Wizard extends Entity {
 
     void setAnimation() {
         int startAni = action;
-        if (attack3) {
+
+        if (basicAtk){
+//            action = RUN;
+
+            action = BASIC;
+//            runBackP1();
+        }else if(attack1){
+//            action = RUN;
+//            runP1();
+//            x+=1;
+            action = ATT1;
+//            runBackP1();
+        }else if(attack2){
+//            action = RUN;
+//            runP1();
+//            x+=1;
+            action = ATT2;
+//            runBackP1();
+        } else if (attack3) {
+
+            action = RUN;
+            runP1();
             action = ATT3;
+//            runBackP1();
         } else {
             action = IDLE;
+//            runP1();
         }
+
 
         if (startAni != action) {
             resetTick();
@@ -86,5 +119,15 @@ public class Wizard extends Entity {
         this.attack3 = attack3;
     }
 
+    public void setAttack2(boolean attack2) {
+        this.attack2 = attack2;
+    }
 
+    public void setAttack1(boolean attack1) {
+        this.attack1 = attack1;
+    }
+
+    public void setBasicAtk(boolean basicAtk) {
+        this.basicAtk = basicAtk;
+    }
 }

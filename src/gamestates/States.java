@@ -1,11 +1,9 @@
 package gamestates;
 
 import main.Game;
+import ui.*;
 import ui.Charpick;
-import ui.CharpickButton;
-import ui.MapsButton;
 import ui.MapsImg;
-import ui.MenuButton;
 import utils.Constant;
 
 import java.awt.event.MouseEvent;
@@ -39,6 +37,22 @@ public class States {
     public boolean isIn(MapsImg mb, MouseEvent e){
         return mb.getBounds().contains(e.getX(), e.getY());
     }
+
+//    public boolean isInSkill1(PlayingSkillButton mb,MouseEvent e){
+//        return mb.getBounds1().contains(e.getX(), e.getY());
+//    }
+//
+//    public boolean isInSkill2(PlayingSkillButton mb,MouseEvent e){
+//        return mb.getBounds2().contains(e.getX(), e.getY());
+//    }
+//
+//    public boolean isInUlt(PlayingSkillButton mb,MouseEvent e){
+//        return mb.getBoundsUlt().contains(e.getX(), e.getY());
+//    }
+//
+//    public boolean isInBasic(PlayingSkillButton mb,MouseEvent e){
+//        return mb.getBoundBasic().contains(e.getX(), e.getY());
+//    }
 
     public Game getGame() {
         return game;

@@ -3,10 +3,12 @@ package gamestates;
 import entities.*;
 import main.Game;
 import ui.MapsImg;
+import ui.PlayingSkillButton;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 
 import static utils.Constant.*;
 
@@ -19,6 +21,8 @@ public class Playing extends States implements Statemethods {
     private final int scale = 3;
     private PlayerStates p1, p2;
     private MapStates map;
+    BufferedImage skills[] = new BufferedImage[4];
+    PlayingSkillButton skillP1, skillP2;
 
     public Playing(Game game, PlayerStates p1, PlayerStates p2, MapStates map) {
         super(game);
@@ -30,6 +34,8 @@ public class Playing extends States implements Statemethods {
 
 
     private void initClasses() {
+        skillP1 = new PlayingSkillButton(SkillPosition.xPosBasicAtkP1, SkillPosition.yPosBasicAtkP1, SkillPosition.xPosSkill1P1, SkillPosition.yPosSkill1P1, SkillPosition.xPosSkill2P1, SkillPosition.yPosSkill2P1, SkillPosition.xPosUltP1, SkillPosition.yPosUltP1);
+        skillP2 = new PlayingSkillButton(SkillPosition.xPosBasicAtkP2, SkillPosition.yPosBasicAtkP2, SkillPosition.xPosSkill1P2, SkillPosition.yPosSkill1P2, SkillPosition.xPosSkill2P2, SkillPosition.yPosSkill2P2, SkillPosition.xPosUltP2, SkillPosition.yPosUltP2);
         wizardP1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
         wizardP2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
         samuraiP1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
@@ -62,18 +68,28 @@ public class Playing extends States implements Statemethods {
 
         if (p1 == PlayerStates.WIZARD) {
             wizardP1.render(g2);
+            skillP1.wizardSkill();
         } else if (p1 == PlayerStates.SAMURAI) {
             samuraiP1.render(g2);
+            skillP1.samuraiSKill();
         }else if(p1 == PlayerStates.DWARF){
             dwarfP1.render(g2);
+            skillP1.warriorSkill();
         }
         if (p2 == PlayerStates.WIZARD) {
             wizardP2.render(g2);
+            skillP2.wizardSkill();
         } else if (p2 == PlayerStates.SAMURAI) {
             samuraiP2.render(g2);
+            skillP2.samuraiSKill();
         }else if(p2 == PlayerStates.DWARF){
             dwarfP2.render(g2);
+            skillP2.warriorSkill();
         }
+
+        skillP1.draw(g2);
+        skillP2.draw(g2);
+        
     }
 
     @Override
@@ -102,12 +118,22 @@ public class Playing extends States implements Statemethods {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+//        skillP1.setMousePressed(false);
+//        skillP2.setMousePressed(false);
+//        if (isInBasic(skillP1, e) || isInSkill1(skillP1, e) || isInSkill2(skillP1, e) || isInUlt(skillP1, e)) {
+//            skillP1.setMousePressed(true);
+//        }else if(isInBasic(skillP2, e) || isInSkill1(skillP2, e) || isInSkill2(skillP2, e) || isInUlt(skillP2, e)){
+//            skillP2.setMousePressed(true);
+//        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-
+//        if (skillP1.isMousePressed()){
+//            if (skillP1.getBoundBasic().getX() == SkillPosition.xPosBasicAtkP1){
+//
+//            }
+//        }
     }
 
     @Override
