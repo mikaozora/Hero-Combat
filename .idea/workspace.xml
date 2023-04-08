@@ -5,51 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="181e21ff-8d3b-48fc-8658-441b9a9ad183" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/entities/Skill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/PlayingSkillButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/kingGarden.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/kingGarden.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/Charpick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/Charpick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Dwarf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Dwarf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Samurai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Samurai.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/kingGarden.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/kingGarden.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$Charpick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$Charpick.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$CharpickBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$CharpickBtn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsBtn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsImg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsImg.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MenuBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MenuBtn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/PickChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/Charpick.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/Charpick.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamestates/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/States.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/LoadSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LoadSave.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="MarkdownSettingsMigration">
-    <option name="stateVersion" value="1" />
-  </component>
-  <component name="ProjectId" id="2O0hnR0454C5Zv1HRjb1V8q8Ez9" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
-  }
-}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
@@ -70,31 +54,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="2f43ca2e-fc04-4ce5-92b0-79d06e5bab4b" name="Changes" comment="" />
-      <created>1680703576125</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1680703576125</updated>
-    </task>
     <servers />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Windows/items/ItemPanel.java</url>
-          <line>10</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/Main.java</url>
-          <line>2</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
