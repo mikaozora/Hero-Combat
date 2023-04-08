@@ -5,16 +5,19 @@ import utils.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static utils.Constant.UI.MenuBtn.*;
 
-public class MenuButton {
+import static utils.Constant.UI.MapsBtn.HEIGHT_BUTTON;
+import static utils.Constant.UI.MapsBtn.WIDTH_BUTTON;
+
+public class MapsButton{
+
     private int x, y, rowIndex, index;
     private GameStates state;
     private BufferedImage[] img;
     private boolean mouseOver, mousePressed;
     private Rectangle bounds;
 
-    public MenuButton(int x, int y, int rowIndex, GameStates state) {
+    public MapsButton(int x, int y, int rowIndex, GameStates state) {
         this.x = x;
         this.y = y;
         this.rowIndex = rowIndex;
@@ -23,18 +26,17 @@ public class MenuButton {
         initBounds();
     }
 
-
     private void initBounds() {
-        bounds = new Rectangle(x, y, 221, 78);
+        bounds = new Rectangle(x, y, 381, 79);
+
     }
 
     private void loadImg() {
         img = new BufferedImage[2];
-        BufferedImage temp = LoadSave.getSprite(LoadSave.MENU_BUTTON);
+        BufferedImage temp = LoadSave.getSprite(LoadSave.CHOOSE_BUTTON);
         for (int i = 0; i < img.length; i++) {
             img[i] = temp.getSubimage(i * WIDTH_BUTTON, rowIndex * HEIGHT_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
         }
-
     }
 
     public void draw(Graphics2D g2){
@@ -78,4 +80,6 @@ public class MenuButton {
         mouseOver = false;
         mousePressed = false;
     }
+
+
 }

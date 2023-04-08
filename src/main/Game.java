@@ -30,7 +30,7 @@ public class Game implements Runnable{
         pickChar = new PickChar(this);
 //        playing = new Playing(this);
         pickItem = new PickItem(this);
-        pickMap = new PickMap(this);
+        pickMap = new PickMap(this, null, null);
     }
 
     public void startGame(){
@@ -105,6 +105,18 @@ public class Game implements Runnable{
 
     public PickMap getPickMap() {
         return pickMap;
+    }
+
+    public void setPickChar(PickChar pickChar) {
+        this.pickChar = pickChar;
+    }
+
+    public void setPickItem(PickItem pickItem) {
+        this.pickItem = pickItem;
+    }
+
+    public void setPickMap(PickMap pickMap) {
+        this.pickMap = pickMap;
     }
 
     @Override

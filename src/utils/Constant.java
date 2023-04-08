@@ -106,5 +106,19 @@ public class Constant {
             public static final int HEIGHT = 343;
             public static final int MARGIN = 380;
         }
+
+        public static class MapsBtn{
+            public static final int WIDTH_BUTTON = 685;
+            public static final int HEIGHT_BUTTON = 383;
+            public static final int MARGIN_TB_MAP = (685-381)/2;
+            public static final int MARGIN_LR_MAP = (383-79)/2;
+        }
+
+        public static class MapsImg{
+            public static final int WIDTH_IMAGE = 282;
+            public static final int HEIGHT_IMAGE = 343;
+//            public static final int MARGIN_TB_MAP = (685-381)/2;
+//            public static final int MARGIN_LR_MAP = (383-79)/2;
+        }
     }
 }

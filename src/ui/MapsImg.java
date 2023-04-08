@@ -5,41 +5,40 @@ import utils.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import static utils.Constant.UI.MenuBtn.*;
 
-public class MenuButton {
+import static utils.Constant.UI.MapsImg.*;
+
+public class MapsImg {
     private int x, y, rowIndex, index;
     private GameStates state;
     private BufferedImage[] img;
-    private boolean mouseOver, mousePressed;
+    private boolean mouseOver, mousePressed, mouseReleased;
     private Rectangle bounds;
 
-    public MenuButton(int x, int y, int rowIndex, GameStates state) {
+    public MapsImg(int x, int y, int rowIndex) {
         this.x = x;
         this.y = y;
         this.rowIndex = rowIndex;
-        this.state = state;
         loadImg();
         initBounds();
     }
 
-
     private void initBounds() {
-        bounds = new Rectangle(x, y, 221, 78);
+        bounds = new Rectangle(x, y, 282, 343);
     }
 
     private void loadImg() {
         img = new BufferedImage[2];
-        BufferedImage temp = LoadSave.getSprite(LoadSave.MENU_BUTTON);
+        BufferedImage temp = LoadSave.getSprite(LoadSave.MAPS_IMG);
         for (int i = 0; i < img.length; i++) {
-            img[i] = temp.getSubimage(i * WIDTH_BUTTON, rowIndex * HEIGHT_BUTTON, WIDTH_BUTTON, HEIGHT_BUTTON);
+            img[i] = temp.getSubimage(i * WIDTH_IMAGE, rowIndex * HEIGHT_IMAGE, WIDTH_IMAGE, HEIGHT_IMAGE);
         }
-
     }
 
     public void draw(Graphics2D g2){
-        g2.drawImage(img[index], x, y, WIDTH_BUTTON, HEIGHT_BUTTON, null);
+        g2.drawImage(img[index], x, y, WIDTH_IMAGE, HEIGHT_IMAGE, null);
     }
+
 
     public void update(){
         index = 0;
@@ -47,6 +46,9 @@ public class MenuButton {
             index = 1;
         }
         if(mousePressed){
+            index = 1;
+        }
+        if (mouseReleased){
             index = 1;
         }
     }
@@ -66,11 +68,18 @@ public class MenuButton {
     public void setMousePressed(boolean mousePressed) {
         this.mousePressed = mousePressed;
     }
+    public boolean isMouseReleased() {
+        return mouseReleased;
+    }
+
+    public void setMouseReleased(boolean mouseReleased) {
+        this.mouseReleased = mouseReleased;
+    }
 
     public Rectangle getBounds() {
         return bounds;
     }
-    public void applyGameState(){
+    public void applyMapState(){
         GameStates.state = state;
     }
 

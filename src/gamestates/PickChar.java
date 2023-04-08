@@ -147,9 +147,8 @@ public class PickChar extends States implements Statemethods {
             if (button.isMousePressed()) {
                 if (player == 2) {
                     if(p1 != PlayerStates.NULL && p2 != PlayerStates.NULL){
-                        game.setPlaying(new Playing(game, p1, p2));
-                        System.out.println(p1);
-                        System.out.println(p2);
+//                        game.setPlaying(new Playing(game, p1, p2));
+                        game.setPickMap(new PickMap(game, getP1(), getP2()));
                         button.applyGameState();
                     }
                 }

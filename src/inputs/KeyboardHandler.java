@@ -27,6 +27,8 @@ public class KeyboardHandler implements KeyListener {
                 break;
             case PICKCHAR:
                 gp.getGame().getPickChar().keyPressed(e);
+            case PICKITEM:
+                gp.getGame().getPickItem().keyPressed(e);
             default:
                 break;
         }

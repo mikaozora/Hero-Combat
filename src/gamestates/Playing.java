@@ -1,9 +1,8 @@
 package gamestates;
 
-import entities.Dwarf;
-import entities.Samurai;
-import entities.Wizard;
+import entities.*;
 import main.Game;
+import ui.MapsImg;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -15,13 +14,17 @@ public class Playing extends States implements Statemethods {
     private Wizard wizardP1, wizardP2;
     private Samurai samuraiP1, samuraiP2;
     private Dwarf dwarfP1, dwarfP2;
+    private AlmoGarden almo;
+    private KingGarden kingGarden;
     private final int scale = 3;
     private PlayerStates p1, p2;
+    private MapStates map;
 
-    public Playing(Game game, PlayerStates p1, PlayerStates p2) {
+    public Playing(Game game, PlayerStates p1, PlayerStates p2, MapStates map) {
         super(game);
         this.p1 = p1;
         this.p2 = p2;
+        this.map = map;
         initClasses();
     }
 
@@ -33,6 +36,8 @@ public class Playing extends States implements Statemethods {
         samuraiP2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
         dwarfP1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
         dwarfP2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+        almo = new AlmoGarden(0, 0);
+        kingGarden = new KingGarden(0, 0);
     }
 
 
@@ -44,10 +49,17 @@ public class Playing extends States implements Statemethods {
         samuraiP2.update();
         dwarfP1.update();
         dwarfP2.update();
+
     }
 
     @Override
     public void draw(Graphics2D g2) {
+        if(map == MapStates.ALMO_GARDEN){
+            almo.render(g2);
+        }else if(map == MapStates.KING_GARDEN){
+            kingGarden.render(g2);
+        }
+
         if (p1 == PlayerStates.WIZARD) {
             wizardP1.render(g2);
         } else if (p1 == PlayerStates.SAMURAI) {

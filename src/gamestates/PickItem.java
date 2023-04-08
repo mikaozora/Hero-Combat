@@ -18,17 +18,11 @@ public class PickItem extends States implements Statemethods{
 
     @Override
     public void draw(Graphics2D g2) {
-        g2.setColor(Color.black);
-        g2.drawString("Choose Item", 100, 100);
-        g2.setColor(Color.red);
-        g2.drawString("Click to continue", 100, 150);
+        g2.drawString("test", 50, 50);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getButton() == MouseEvent.BUTTON1){
-            GameStates.state = GameStates.PICKMAP;
-        }
     }
 
     @Override
@@ -48,6 +42,8 @@ public class PickItem extends States implements Statemethods{
 
     @Override
     public void keyPressed(KeyEvent e) {
-
+        if(e.getKeyCode() == KeyEvent.VK_ENTER){
+            GameStates.state = GameStates.PICKMAP;
+        }
     }
 }

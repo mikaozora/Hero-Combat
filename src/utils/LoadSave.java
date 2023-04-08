@@ -15,6 +15,10 @@ public class LoadSave {
     public static final String PICKCHAR_CHAR = "pickchar-char.png";
     public static final String SAMURAI = "samurai.png";
     public static final String DWARF = "warior.png";
+    public static final String MAPS_IMG = "maps-img.png";
+    public static final String CHOOSE_BUTTON = "choose-button.png";
+    public static final String ALMO_GARDEN = "almoGarden.png";
+    public static final String KING_GARDEN = "kingGarden.png";
     public static BufferedImage getSprite(String fileName){
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
