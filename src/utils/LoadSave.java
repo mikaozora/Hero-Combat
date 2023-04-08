@@ -34,6 +34,9 @@ public class LoadSave {
     public static final String DWARF_SKILL = "dwarfSkill.png";
     public static final String SAMURAI_SKILL = "samuraiSkill.png";
 
+    public static final String PICKITEM_TITLE = "pickitem-title.png";
+    public static final String PICKITEM_ITEM = "pickitem-item.png";
+    public static final String PICKITEM_BUTTON = "menu-button.png";
     public static BufferedImage getSprite(String fileName){
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);
@@ -51,5 +54,3 @@ public class LoadSave {
         return img;
     }
 }
-
-

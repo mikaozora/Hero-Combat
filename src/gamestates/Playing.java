@@ -23,11 +23,15 @@ public class Playing extends States implements Statemethods {
     BufferedImage skills[] = new BufferedImage[4];
     private SkillButton[] skillButtons = new SkillButton[8];
 
-    public Playing(Game game, PlayerStates p1, PlayerStates p2, MapStates map) {
+    ItemStates p1_item, p2_item;
+
+    public Playing(Game game, PlayerStates p1, PlayerStates p2, ItemStates p1_item, ItemStates p2_item, MapStates map) {
         super(game);
         this.p1 = p1;
         this.p2 = p2;
         this.map = map;
+        this.p1_item = p1_item;
+        this.p2_item = p2_item;
         initClasses();
         loadSkill();
     }
@@ -85,8 +89,6 @@ public class Playing extends States implements Statemethods {
         for(SkillButton sb : skillButtons){
             sb.draw(g2);
         }
-
-        
     }
 
     public void drawDetails(Graphics2D g2){
