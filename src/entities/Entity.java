@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public abstract class Entity {
     protected int x, y, hp, atk, def;
-    private boolean attack3;
+    protected boolean attack3, attack2, attack1, basic;
     protected ArrayList<Skill> skills;
     public Entity(int x, int y, int hp, int atk, int def) {
         this.x = x;
@@ -47,5 +47,14 @@ public abstract class Entity {
     public abstract void loadAnimations();
     public abstract void render(Graphics2D g2);
     public abstract void update();
+
     public abstract void setAttack3(boolean attack3);
+
+    public abstract void setAttack2(boolean attack2);
+
+    public abstract void setAttack1(boolean attack1);
+
+    public abstract void setBasic(boolean basic);
+
+    public abstract boolean isAttack3();
 }

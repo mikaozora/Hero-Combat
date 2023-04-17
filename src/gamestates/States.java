@@ -44,26 +44,9 @@ public class States {
     public boolean isInIb(ItempickButton ib, MouseEvent e){
         return ib.getBounds().contains(e.getX() - MARGIN_LR_MAP, e.getY() - MARGIN_TB_MAP);
     }
-
     public boolean isInIp(ItemPick ip, MouseEvent e){
         return ip.getBounds().contains(e.getX(), e.getY());
     }
-
-//    public boolean isInSkill1(PlayingSkillButton mb,MouseEvent e){
-//        return mb.getBounds1().contains(e.getX(), e.getY());
-//    }
-//
-//    public boolean isInSkill2(PlayingSkillButton mb,MouseEvent e){
-//        return mb.getBounds2().contains(e.getX(), e.getY());
-//    }
-//
-//    public boolean isInUlt(PlayingSkillButton mb,MouseEvent e){
-//        return mb.getBoundsUlt().contains(e.getX(), e.getY());
-//    }
-//
-//    public boolean isInBasic(PlayingSkillButton mb,MouseEvent e){
-//        return mb.getBoundBasic().contains(e.getX(), e.getY());
-//    }
 
     public Game getGame() {
         return game;

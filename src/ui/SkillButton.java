@@ -17,8 +17,9 @@ public class SkillButton {
     private Entity entity;
     private int action;
     private BufferedImage[] img;
-    private boolean mousePressed;
+    private boolean mousePressed, mouseReleased;
     private Rectangle bounds;
+    private int skillIndex;
 
     public SkillButton(int x, int y, int rowIndex, Entity entity, int action) {
         this.x = x;
@@ -49,10 +50,21 @@ public class SkillButton {
     }
     public void draw(Graphics2D g2){
         g2.drawImage(img[index], x, y, SIZE, SIZE, null);
+        g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 26));
+        if(mouseReleased){
+            if(action != 0){
+                if(entity.getSkills().get(action).getCd() > 0){
+                    g2.drawString(""+entity.getSkills().get(action).getCd(), x+38, y+55);
+                }
+            }
+        }
     }
     public void update(){
         index = 0;
         if(mousePressed){
+            index = 1;
+        }
+        if(mouseReleased){
             index = 1;
         }
     }
@@ -65,7 +77,37 @@ public class SkillButton {
         this.mousePressed = mousePressed;
     }
 
+    public void setMouseReleased(boolean mouseReleased) {
+        this.mouseReleased = mouseReleased;
+    }
+
     public Rectangle getBounds() {
         return bounds;
+    }
+    public void applyAction(){
+        switch (action){
+            case 0 -> entity.setBasic(true);
+            case 1 -> entity.setAttack1(true);
+            case 2 -> entity.setAttack2(true);
+            case 3 -> entity.setAttack3(true);
+        }
+    }
+    public void resetAni(){
+        entity.setBasic(false);
+        entity.setAttack1(false);
+        entity.setAttack2(false);
+        entity.setAttack3(false);
+    }
+
+    public void resetBool(){
+        mousePressed = false;
+    }
+
+    public int getAction() {
+        return action;
+    }
+
+    public boolean isMouseReleased() {
+        return mouseReleased;
     }
 }

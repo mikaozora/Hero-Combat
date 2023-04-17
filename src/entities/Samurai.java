@@ -43,13 +43,20 @@ public class Samurai extends Entity{
             aniIndex++;
             if (aniIndex >= getSpriteAmount(action)) {
                 aniIndex = 0;
-                attack3 = false;
+                resetAction();
             }
         }
     }
     void setAnimation() {
         int startAni = action;
-        if (attack3) {
+
+        if (basic){
+            action = BASIC;
+        }else if(attack1){
+            action = ATT1;
+        }else if(attack2){
+            action = ATT2;
+        } else if (attack3) {
             action = ATT3;
         } else {
             action = IDLE;
@@ -63,6 +70,12 @@ public class Samurai extends Entity{
         aniTick = 0;
         aniIndex = 0;
     }
+    private void resetAction(){
+        attack3 = false;
+        attack1 = false;
+        attack2 = false;
+        basic = false;
+    }
     void initSkills(){
         skills.add(new Skill("Basic", 0, atk));
         skills.add(new Skill("Slash", 1, atk+50));
@@ -71,5 +84,21 @@ public class Samurai extends Entity{
     }
     public void setAttack3(boolean attack3) {
         this.attack3 = attack3;
+    }
+    public void setAttack2(boolean attack2) {
+        this.attack2 = attack2;
+    }
+
+    @Override
+    public void setAttack1(boolean attack1) {
+        this.attack1 = attack1;
+    }
+
+    @Override
+    public void setBasic(boolean basic) {
+        this.basic = basic;
+    }
+    public boolean isAttack3() {
+        return this.attack3;
     }
 }
