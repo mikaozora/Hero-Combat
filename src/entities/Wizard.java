@@ -13,7 +13,6 @@ public class Wizard extends Entity {
     private BufferedImage[][] hero2;
     private int aniTick, aniIndex, aniSpeed = 20;
     private int action = IDLE;
-    private boolean attack3 = false, attack2 = false, attack1 = false, basicAtk = false;
     private int width, height;
 
     public Wizard(int x, int y, int width, int height) {
@@ -66,7 +65,7 @@ public class Wizard extends Entity {
             aniIndex++;
             if (aniIndex >= getSpriteAmount(action)) {
                 aniIndex = 0;
-                attack3 = false;
+                resetAction();
             }
         }
     }
@@ -74,32 +73,16 @@ public class Wizard extends Entity {
     void setAnimation() {
         int startAni = action;
 
-        if (basicAtk){
-//            action = RUN;
-
+        if (basic){
             action = BASIC;
-//            runBackP1();
         }else if(attack1){
-//            action = RUN;
-//            runP1();
-//            x+=1;
             action = ATT1;
-//            runBackP1();
         }else if(attack2){
-//            action = RUN;
-//            runP1();
-//            x+=1;
             action = ATT2;
-//            runBackP1();
         } else if (attack3) {
-
-            action = RUN;
-            runP1();
             action = ATT3;
-//            runBackP1();
         } else {
             action = IDLE;
-//            runP1();
         }
 
 
@@ -113,6 +96,12 @@ public class Wizard extends Entity {
         aniIndex = 0;
     }
 
+    private void resetAction(){
+        attack3 = false;
+        attack1 = false;
+        attack2 = false;
+        basic = false;
+    }
 
     public void setAttack3(boolean attack3) {
         this.attack3 = attack3;
@@ -122,11 +111,16 @@ public class Wizard extends Entity {
         this.attack2 = attack2;
     }
 
+    @Override
     public void setAttack1(boolean attack1) {
         this.attack1 = attack1;
     }
 
-    public void setBasicAtk(boolean basicAtk) {
-        this.basicAtk = basicAtk;
+    @Override
+    public void setBasic(boolean basic) {
+        this.basic = basic;
+    }
+    public boolean isAttack3() {
+        return this.attack3;
     }
 }
