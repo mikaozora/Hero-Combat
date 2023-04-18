@@ -1,11 +1,14 @@
 package entities;
 
+import gamestates.ItemStates;
+
 import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Entity {
     protected int x, y, hp, atk, def;
     protected boolean attack3, attack2, attack1, basic;
+    protected ItemStates item;
     protected ArrayList<Skill> skills;
     public Entity(int x, int y, int hp, int atk, int def) {
         this.x = x;
