@@ -22,7 +22,7 @@ public class Samurai extends Entity{
     }
     public void loadAnimations(){
         BufferedImage img = LoadSave.getSprite(LoadSave.SAMURAI);
-        samurai = new BufferedImage[7][8];
+        samurai = new BufferedImage[8][8];
         for (int j = 0; j < samurai.length; j++) {
             for (int i = 0; i < samurai[j].length; i++) {
                 samurai[j][i] = img.getSubimage(128 * i, 128 * j, 128, 128);

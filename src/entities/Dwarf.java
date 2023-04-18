@@ -22,7 +22,7 @@ public class Dwarf extends Entity{
     }
     public void loadAnimations() {
         BufferedImage img = LoadSave.getSprite(LoadSave.DWARF);
-        dwarf = new BufferedImage[7][6];
+        dwarf = new BufferedImage[8][6];
         for (int j = 0; j < dwarf.length; j++) {
             for (int i = 0; i < dwarf[j].length; i++) {
                 dwarf[j][i] = img.getSubimage(96 * i, 96 * j, 96, 96);

@@ -9,11 +9,12 @@ public class Constant {
         public static final int ATT2 = 4;
         public static final int ATT3 = 5;
         public static final int DEAD = 6;
+        public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
 
         public static int getSpriteAmount(int action){
-            if(action == IDLE){
+            if(action == IDLE || action == HITTED){
                 return 7;
             }else if(action == BASIC || action == ATT1){
                 return 4;
@@ -37,6 +38,7 @@ public class Constant {
         public static final int ATT2 = 5;
         public static final int ATT3 = 6;
         public static final int DEAD = 1;
+        public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
 
@@ -49,8 +51,10 @@ public class Constant {
                 return 6;
             }else if(action == ATT1){
                 return 5;
-            }else if(action == ATT3){
+            }else if(action == ATT3) {
                 return 2;
+            }else if(action == HITTED){
+                return 1;
             } else{
                 return 0;
             }
@@ -64,13 +68,14 @@ public class Constant {
         public static final int ATT2 = 5;
         public static final int ATT3 = 1;
         public static final int DEAD = 6;
+        public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
 
         public static int getSpriteAmount(int action){
             if(action == BASIC || action == ATT2 || action == ATT1 || action == DEAD){
                 return 4;
-            }else if(action == RUN || action == IDLE){
+            }else if(action == RUN || action == IDLE || action == HITTED){
                 return 6;
             }else if(action == ATT3){
                 return 2;
