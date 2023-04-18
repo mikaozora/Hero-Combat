@@ -27,6 +27,9 @@ public class Skill {
     public int getDamage() {
         return damage;
     }
+    public void setDamage(int damage){
+        this.damage = damage;
+    }
 
     public void setCd(int cd) {
         this.cd = cd;

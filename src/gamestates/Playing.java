@@ -61,6 +61,19 @@ public class Playing extends States implements Statemethods {
         } else if (p2 == PlayerStates.DWARF) {
             player2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
         }
+        if (p1_item == ItemStates.SHIELD){
+            player1.setDef(player1.getDef()+500);
+        } else if (p1_item == ItemStates.SWORD) {
+//            player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
+            player1.setAtk(player1.getAtk()+500);
+        }
+        if (p2_item == ItemStates.SHIELD){
+            player2.setDef(player2.getDef()+500);
+        } else if (p2_item == ItemStates.SWORD) {
+//            player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
+            player2.setAtk(player2.getAtk()+500);
+        }
+
         almo = new AlmoGarden(0, 0);
         kingGarden = new KingGarden(0, 0);
     }
@@ -129,18 +142,25 @@ public class Playing extends States implements Statemethods {
         g2.drawString((p1Turn ? "P1 Turn" : "P2 Turn"), 700, 100);
     }
 
-    public void drawDetails(Graphics2D g2) {
+    public void drawDetails(Graphics2D g2){
         g2.setColor(Color.white);
-        g2.drawString("Hp:" + player1.getHp(), 10, 50);
-        g2.drawString("ATK:" + player1.getAtk(), 60, 50);
-        g2.drawString("DEF:" + player1.getDef(), 110, 50);
-        g2.drawString("Hp:" + player2.getHp(), 1000, 50);
-        g2.drawString("ATK:" + player2.getAtk(), 1050, 50);
-        g2.drawString("DEF:" + player2.getDef(), 1100, 50);
+        g2.drawString("Hp:"+player1.getHp(), 10, 50);
+        g2.drawString("ATK:"+player1.getAtk(), 60, 50);
+        g2.drawString("DEF:"+player1.getDef(), 110, 50);
+        g2.drawString("ITEM:"+p1_item, 200, 50);
+        g2.drawString("Hp:"+player2.getHp(), 1000, 100);
+        g2.drawString("ATK:"+player2.getAtk(), 1050, 100);
+        g2.drawString("DEF:"+player2.getDef(), 1100, 100);
+        g2.drawString("ITEM:"+p2_item, 1150, 100);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if(e.getButton() == MouseEvent.BUTTON1){
+            player1.setAttack3(true);
+        }
+
+
     }
 
     @Override
@@ -194,6 +214,14 @@ public class Playing extends States implements Statemethods {
                         if (sb.getAction() != 0) {
                             skillPressedP1[sb.getAction()] = true;
                         }
+                        if (player2.getDef() > 0) {
+                            player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
+                        } else if (player2.getHp() > 0) {
+                            player2.setHp(player2.getHp() + player2.getDef());
+                            player2.setHp(player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage());
+                        } else {
+                            System.out.println("Player 1 win");
+                        }
                         p1Turn = false;
                         p2Turn = true;
                     }
@@ -214,6 +242,14 @@ public class Playing extends States implements Statemethods {
                         sb.setMouseReleased(true);
                         if(sb.getAction() != 0){
                             skillPressedP2[sb.getAction()] = true;
+                        }
+                        if (player1.getDef() > 0) {
+                            player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
+                        } else if (player1.getHp() > 0) {
+                            player1.setHp(player1.getHp() + player1.getDef());
+                            player1.setHp(player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage());
+                        } else {
+                            System.out.println("Player 2 win");
                         }
                         p1Turn = true;
                         p2Turn = false;
@@ -341,9 +377,8 @@ public class Playing extends States implements Statemethods {
         if (e.getKeyCode() == KeyEvent.VK_P) {
             GameStates.state = GameStates.MENU;
         }
-        if (e.getKeyCode() == KeyEvent.VK_L) {
+        if(e.getKeyCode() == KeyEvent.VK_L){
             player2.setAttack3(true);
         }
     }
-
 }
