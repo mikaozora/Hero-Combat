@@ -82,6 +82,7 @@ public class Menu extends States implements Statemethods{
         for(MenuButton mb : buttons){
             if(isInMb(mb, e)){
                 if(mb.isMousePressed()){
+                    game.setPickChar(new PickChar(game));
                     mb.applyGameState();
                 }
                 break;

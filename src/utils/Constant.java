@@ -12,6 +12,9 @@ public class Constant {
         public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
+        public static final int HP = 500;
+        public static final int ATK = 50;
+        public static final int DEF = 50;
 
         public static int getSpriteAmount(int action){
             if(action == IDLE || action == HITTED){
@@ -41,6 +44,9 @@ public class Constant {
         public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
+        public static final int HP = 400;
+        public static final int ATK = 60;
+        public static final int DEF = 50;
 
         public static int getSpriteAmount(int action){
             if(action == BASIC || action == ATT2){
@@ -71,6 +77,9 @@ public class Constant {
         public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
+        public static final int HP = 600;
+        public static final int ATK = 40;
+        public static final int DEF = 50;
 
         public static int getSpriteAmount(int action){
             if(action == BASIC || action == ATT2 || action == ATT1 || action == DEAD){
@@ -138,6 +147,12 @@ public class Constant {
             public static final int HEIGHT_IMAGE = 343;
 //            public static final int MARGIN_TB_MAP = (685-381)/2;
 //            public static final int MARGIN_LR_MAP = (383-79)/2;
+        }
+        public static class PauseBtn{
+            public static final int WIDTH_BUTTON = 412;
+            public static final int HEIGHT_BUTTON = 171;
+            public static final int MARGIN_TB = 46;
+            public static final int MARGIN_LR = 46;
         }
         public static class SkillButton{
             public static final int SIZE = 89;

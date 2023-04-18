@@ -143,12 +143,10 @@ public class PickMap extends States implements Statemethods{
                         if(mb.getBounds().getX() == 380){
                             MapsImg[0].setMouseReleased(true);
                             MapsImg[1].setMouseReleased(false);
-                            System.out.println(temp);
                             temp = MapStates.ALMO_GARDEN;
                         }else if(mb.getBounds().getX() == 750){
                             MapsImg[0].setMouseReleased(false);
                             MapsImg[1].setMouseReleased(true);
-                            System.out.println(temp);
                             temp = MapStates.KING_GARDEN;
                         }
                     }

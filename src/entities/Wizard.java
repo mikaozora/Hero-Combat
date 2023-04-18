@@ -16,7 +16,7 @@ public class Wizard extends Entity {
     private int width, height;
 
     public Wizard(int x, int y, int width, int height) {
-        super(x, y, 500, 50, 50);
+        super(x, y, HP, ATK, DEF);
         initSkills();
         this.width = width;
         this.height = height;

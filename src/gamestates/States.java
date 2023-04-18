@@ -5,12 +5,10 @@ import ui.*;
 import ui.Charpick;
 import ui.MapsImg;
 import ui.SkillButton;
-import utils.Constant;
 
 import java.awt.event.MouseEvent;
 import static utils.Constant.UI.*;
 
-import static utils.Constant.UI.MenuBtn.*;
 import static utils.Constant.UI.MapsBtn.*;
 
 public class States {
@@ -46,6 +44,9 @@ public class States {
     }
     public boolean isInIp(ItemPick ip, MouseEvent e){
         return ip.getBounds().contains(e.getX(), e.getY());
+    }
+    public boolean isInPb(UrmButton pb, MouseEvent e){
+        return pb.getBounds().contains(e.getX() - PauseBtn.MARGIN_TB, e.getY() - PauseBtn.MARGIN_TB);
     }
 
     public Game getGame() {
