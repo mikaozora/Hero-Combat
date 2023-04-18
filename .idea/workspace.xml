@@ -8,54 +8,18 @@
       <change afterPath="$PROJECT_DIR$/../practice/src/Week13/GameFrame.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/../practice/src/Week14/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Attack_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/Flame_jet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/all_skills.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/bscAtk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/dwarfSkill.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/dwarfSkill.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/samuraiSkill.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/samuraiSkill.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/samuraiSkill1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/samuraiSkill2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/samuraiUlt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/warriorSkill1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/warriorSkill2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/warriorUlt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/wizSkill1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/wizSkill2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/wizUlt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Attack_1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/Flame_jet.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/all_skills.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/bscAtk.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/dwarfSkill.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/dwarfSkill.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/samurai.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/samurai.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/warior.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/warior.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/wizard.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/wizard.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/samuraiSkill.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/samuraiSkill.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/samuraiSkill1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/samuraiSkill2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/samuraiUlt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/PlayingSkillButton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/SkillButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/SkillButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/warriorSkill1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/warriorSkill2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/warriorUlt.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/wizSkill1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/wizSkill2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/wizUlt.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemBtn.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemImg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemImg.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Dwarf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Dwarf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Samurai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Samurai.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Skill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Skill.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/States.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/PlayingSkillButton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/SkillButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/SkillButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/LoadSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LoadSave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

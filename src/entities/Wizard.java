@@ -35,7 +35,7 @@ public class Wizard extends Entity {
 
     public void loadAnimations() {
         BufferedImage img = LoadSave.getSprite(LoadSave.WIZARD);
-        hero2 = new BufferedImage[7][14];
+        hero2 = new BufferedImage[8][14];
         for (int j = 0; j < hero2.length; j++) {
             for (int i = 0; i < hero2[j].length; i++) {
                 hero2[j][i] = img.getSubimage(128 * i, 128 * j, 128, 128);
