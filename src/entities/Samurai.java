@@ -14,7 +14,7 @@ public class Samurai extends Entity{
     private int width, height;
     private boolean attack3 = false;
     public Samurai(int x, int y, int width, int height) {
-        super(x, y, 400, 60, 50);
+        super(x, y, HP, ATK, DEF);
         initSkills();
         this.width = width;
         this.height = height;

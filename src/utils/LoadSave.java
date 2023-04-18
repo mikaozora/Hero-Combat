@@ -26,6 +26,10 @@ public class LoadSave {
     public static final String PICKITEM_TITLE = "pickitem-title.png";
     public static final String PICKITEM_ITEM = "pickitem-item.png";
     public static final String PICKITEM_BUTTON = "menu-button.png";
+    public static final String BG_PAUSE = "bg-pause.png";
+    public static final String PAUSE_BTN = "pause-button.png";
+    public static final String BG_P1WIN = "bg-p1win.png";
+    public static final String BG_P2WIN = "bg-p2win.png";
     public static BufferedImage getSprite(String fileName){
         BufferedImage img = null;
         InputStream is = LoadSave.class.getResourceAsStream("/" + fileName);

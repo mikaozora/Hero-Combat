@@ -21,7 +21,7 @@ public class PickChar extends States implements Statemethods {
     private CharpickButton button;
     private Charpick[] chars = new Charpick[3];
     private int player = 1;
-    private PlayerStates p1 = PlayerStates.NULL, p2 = PlayerStates.NULL, temp;
+    private PlayerStates p1, p2, temp;
     private Wizard wizard;
     private Samurai samurai;
     private Dwarf dwarf;
@@ -33,6 +33,8 @@ public class PickChar extends States implements Statemethods {
         loadTitle();
         loadChar();
         loadButton();
+        p1 = PlayerStates.NULL;
+        p2 = PlayerStates.NULL;
     }
 
     private void loadBg() {
@@ -144,7 +146,6 @@ public class PickChar extends States implements Statemethods {
                     }else{
                         p2 = temp;
                     }
-
                 }
                 break;
             }
@@ -153,9 +154,7 @@ public class PickChar extends States implements Statemethods {
             if (button.isMousePressed()) {
                 if (player == 2) {
                     if(p1 != PlayerStates.NULL && p2 != PlayerStates.NULL){
-//                        game.setPlaying(new Playing(game, p1, p2));
-//                        game.setPickMap(new PickMap(game, getP1(), getP2()));
-                        game.setPickItem(new PickItem(game, getP1(), getP2()));
+                        game.setPickItem(new PickItem(game, p1, p2));
                         button.applyGameState();
                     }
                 }

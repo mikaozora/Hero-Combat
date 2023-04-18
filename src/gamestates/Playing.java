@@ -2,6 +2,8 @@ package gamestates;
 
 import entities.*;
 import main.Game;
+import ui.GameoverOverlay;
+import ui.PauseOverlay;
 import ui.SkillButton;
 
 import javax.swing.*;
@@ -14,7 +16,7 @@ import java.util.Arrays;
 import static utils.Constant.*;
 
 public class Playing extends States implements Statemethods {
-    private Entity player1, player2;
+    private Entity player1, player2, tempP1, tempP2;
     private AlmoGarden almo;
     private KingGarden kingGarden;
     private final int scale = 3;
@@ -32,6 +34,10 @@ public class Playing extends States implements Statemethods {
     private boolean[] delayP1 = new boolean[4];
     private boolean[] delayP2 = new boolean[4];
     private boolean p1Turn = true, p2Turn = false;
+    private PauseOverlay pauseOverlay;
+    private boolean pause = false;
+    private GameoverOverlay gameoverOverlay;
+    private int gameOver = -1; // -1 = not end, 0 = p1 win, 1 = p2 win
 
     public Playing(Game game, PlayerStates p1, PlayerStates p2, ItemStates p1_item, ItemStates p2_item, MapStates map) {
         super(game);
@@ -49,33 +55,44 @@ public class Playing extends States implements Statemethods {
     private void initClasses() {
         if (p1 == PlayerStates.WIZARD) {
             player1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
+            tempP1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
         } else if (p1 == PlayerStates.SAMURAI) {
             player1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
+            tempP1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
         } else if (p1 == PlayerStates.DWARF) {
             player1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+            tempP1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
         }
         if (p2 == PlayerStates.WIZARD) {
             player2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
+            tempP2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
         } else if (p2 == PlayerStates.SAMURAI) {
             player2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
+            tempP2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
         } else if (p2 == PlayerStates.DWARF) {
             player2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
+            tempP2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
         }
-        if (p1_item == ItemStates.SHIELD){
-            player1.setDef(player1.getDef()+500);
+        if (p1_item == ItemStates.SHIELD) {
+            player1.setDef(player1.getDef() + 500);
+            tempP1.setDef(tempP1.getDef() + 500);
         } else if (p1_item == ItemStates.SWORD) {
-//            player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
-            player1.setAtk(player1.getAtk()+500);
+            player1.setAtk(player1.getAtk() + 500);
+            tempP1.setDef(tempP1.getDef() + 500);
         }
-        if (p2_item == ItemStates.SHIELD){
-            player2.setDef(player2.getDef()+500);
+        if (p2_item == ItemStates.SHIELD) {
+            player2.setDef(player2.getDef() + 500);
+            tempP2.setDef(tempP2.getDef() + 500);
         } else if (p2_item == ItemStates.SWORD) {
 //            player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
-            player2.setAtk(player2.getAtk()+500);
+            player2.setAtk(player2.getAtk() + 500);
+            tempP2.setAtk(tempP2.getAtk() + 500);
         }
 
         almo = new AlmoGarden(0, 0);
         kingGarden = new KingGarden(0, 0);
+        pauseOverlay = new PauseOverlay(this);
+        gameoverOverlay = new GameoverOverlay(this);
     }
 
     private void loadSkill() {
@@ -107,13 +124,21 @@ public class Playing extends States implements Statemethods {
 
     @Override
     public void update() {
-        player1.update();
-        player2.update();
-        for (SkillButton sb : skillButtonsP1) {
-            sb.update();
-        }
-        for (SkillButton sb : skillButtonsP2) {
-            sb.update();
+        if (gameOver == -1) {
+            if (!pause) {
+                player1.update();
+                player2.update();
+                for (SkillButton sb : skillButtonsP1) {
+                    sb.update();
+                }
+                for (SkillButton sb : skillButtonsP2) {
+                    sb.update();
+                }
+            } else {
+                pauseOverlay.update();
+            }
+        }else{
+            gameoverOverlay.update();
         }
     }
 
@@ -134,6 +159,12 @@ public class Playing extends States implements Statemethods {
             sb.draw(g2);
         }
         drawTurn(g2);
+        if (pause) {
+            pauseOverlay.draw(g2);
+        }
+        if(gameOver != -1){
+            gameoverOverlay.draw(g2);
+        }
     }
 
     public void drawTurn(Graphics2D g2) {
@@ -142,34 +173,40 @@ public class Playing extends States implements Statemethods {
         g2.drawString((p1Turn ? "P1 Turn" : "P2 Turn"), 700, 100);
     }
 
-    public void drawDetails(Graphics2D g2){
+    public void drawDetails(Graphics2D g2) {
         g2.setColor(Color.white);
-        g2.drawString("Hp:"+player1.getHp(), 10, 50);
-        g2.drawString("ATK:"+player1.getAtk(), 60, 50);
-        g2.drawString("DEF:"+player1.getDef(), 110, 50);
-        g2.drawString("ITEM:"+p1_item, 200, 50);
-        g2.drawString("Hp:"+player2.getHp(), 1000, 100);
-        g2.drawString("ATK:"+player2.getAtk(), 1050, 100);
-        g2.drawString("DEF:"+player2.getDef(), 1100, 100);
-        g2.drawString("ITEM:"+p2_item, 1150, 100);
+        g2.drawString("Hp:" + player1.getHp(), 10, 50);
+        g2.drawString("ATK:" + player1.getAtk(), 60, 50);
+        g2.drawString("DEF:" + player1.getDef(), 110, 50);
+        g2.drawString("ITEM:" + p1_item, 200, 50);
+        g2.drawString("Hp:" + player2.getHp(), 1000, 100);
+        g2.drawString("ATK:" + player2.getAtk(), 1050, 100);
+        g2.drawString("DEF:" + player2.getDef(), 1100, 100);
+        g2.drawString("ITEM:" + p2_item, 1150, 100);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(e.getButton() == MouseEvent.BUTTON1){
-            player1.setAttack3(true);
-        }
-
-
     }
 
     @Override
     public void mouseMoved(MouseEvent e) {
-
+        if (pause) {
+            pauseOverlay.mouseMoved(e);
+        }
+        if(gameOver != -1){
+            gameoverOverlay.mouseMoved(e);
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        if (pause) {
+            pauseOverlay.mousePressed(e);
+        }
+        if(gameOver != -1){
+            gameoverOverlay.mousePressed(e);
+        }
         if (p1Turn) {
             skillPressP1(e);
         } else if (p2Turn) {
@@ -179,6 +216,12 @@ public class Playing extends States implements Statemethods {
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        if (pause) {
+            pauseOverlay.mouseReleased(e);
+        }
+        if(gameOver != -1){
+            gameoverOverlay.mouseReleased(e);
+        }
         if (p1Turn) {
             skillReleaseP1(e);
         } else if (p2Turn) {
@@ -235,12 +278,12 @@ public class Playing extends States implements Statemethods {
 
     public void skillReleaseP2(MouseEvent e) {
         for (SkillButton sb : skillButtonsP2) {
-            if(!skillPressedP2[sb.getAction()]) {
+            if (!skillPressedP2[sb.getAction()]) {
                 if (isInSb(sb, e)) {
                     if (sb.isMousePressed()) {
                         sb.applyAction();
                         sb.setMouseReleased(true);
-                        if(sb.getAction() != 0){
+                        if (sb.getAction() != 0) {
                             skillPressedP2[sb.getAction()] = true;
                         }
                         if (player1.getDef() > 0) {
@@ -254,6 +297,7 @@ public class Playing extends States implements Statemethods {
                         p1Turn = true;
                         p2Turn = false;
                         turn++;
+                        cdProcess();
                     }
                     break;
                 }
@@ -261,7 +305,6 @@ public class Playing extends States implements Statemethods {
             sb.resetAni();
         }
         resetButton();
-        cdProcess();
     }
 
     public void resetButton() {
@@ -277,9 +320,10 @@ public class Playing extends States implements Statemethods {
         cdProcessP1();
         cdProcessP2();
     }
+
     public void cdProcessP1() {
         if (skillPressedP1[3]) {
-            if(!delayP1[3]) {
+            if (!delayP1[3]) {
                 if (cdP1[3].getCd() > 0) {
                     cdP1[3].setCd(cdP1[3].getCd() - 1);
                     if (cdP1[3].getCd() == 0) {
@@ -289,12 +333,12 @@ public class Playing extends States implements Statemethods {
                         delayP1[3] = true;
                     }
                 }
-            }else{
+            } else {
                 delayP1[3] = false;
             }
         }
         if (skillPressedP1[1]) {
-            if(!delayP1[1]) {
+            if (!delayP1[1]) {
                 if (cdP1[1].getCd() > 0) {
                     cdP1[1].setCd(cdP1[1].getCd() - 1);
                     if (cdP1[1].getCd() == 0) {
@@ -304,12 +348,12 @@ public class Playing extends States implements Statemethods {
                         delayP1[1] = true;
                     }
                 }
-            }else{
+            } else {
                 delayP1[1] = false;
             }
         }
         if (skillPressedP1[2]) {
-            if(!delayP1[2]) {
+            if (!delayP1[2]) {
                 if (cdP1[2].getCd() > 0) {
                     cdP1[2].setCd(cdP1[2].getCd() - 1);
                     if (cdP1[2].getCd() == 0) {
@@ -319,14 +363,15 @@ public class Playing extends States implements Statemethods {
                         delayP1[2] = true;
                     }
                 }
-            }else{
+            } else {
                 delayP1[2] = false;
             }
         }
     }
+
     public void cdProcessP2() {
         if (skillPressedP2[3]) {
-            if(!delayP2[3]) {
+            if (!delayP2[3]) {
                 if (cdP2[3].getCd() > 0) {
                     cdP2[3].setCd(cdP2[3].getCd() - 1);
                     if (cdP2[3].getCd() == 0) {
@@ -336,12 +381,12 @@ public class Playing extends States implements Statemethods {
                         delayP2[3] = true;
                     }
                 }
-            }else{
+            } else {
                 delayP2[3] = false;
             }
         }
         if (skillPressedP2[1]) {
-            if(!delayP2[1]) {
+            if (!delayP2[1]) {
                 if (cdP2[1].getCd() > 0) {
                     cdP2[1].setCd(cdP2[1].getCd() - 1);
                     if (cdP2[1].getCd() == 0) {
@@ -351,12 +396,12 @@ public class Playing extends States implements Statemethods {
                         delayP2[1] = true;
                     }
                 }
-            }else{
+            } else {
                 delayP2[1] = false;
             }
         }
         if (skillPressedP2[2]) {
-            if(!delayP2[2]) {
+            if (!delayP2[2]) {
                 if (cdP2[2].getCd() > 0) {
                     cdP2[2].setCd(cdP2[2].getCd() - 1);
                     if (cdP2[2].getCd() == 0) {
@@ -366,7 +411,7 @@ public class Playing extends States implements Statemethods {
                         delayP2[2] = true;
                     }
                 }
-            }else{
+            } else {
                 delayP2[2] = false;
             }
         }
@@ -374,11 +419,69 @@ public class Playing extends States implements Statemethods {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_P) {
-            GameStates.state = GameStates.MENU;
+        if (gameOver == -1) {
+            switch (e.getKeyCode()) {
+                case KeyEvent.VK_ESCAPE -> pause = !pause;
+                case KeyEvent.VK_0 -> gameOver = 0; // test
+                case KeyEvent.VK_1 -> gameOver = 1; // test
+            }
         }
-        if(e.getKeyCode() == KeyEvent.VK_L){
-            player2.setAttack3(true);
+    }
+
+    public void unPauseGame() {
+        this.pause = false;
+    }
+
+    public void rematch() {
+        turn = 1;
+        p1Turn = true;
+        p2Turn = false;
+        gameOver = -1;
+        loadSkillPressed();
+        resetSkillBtn();
+        resetCd();
+        resetAttribut();
+    }
+
+    public void resetCd() {
+        for (int i = 0; i < cdP1.length; i++) {
+            cdP1[i].setCd(i);
         }
+        for (int i = 0; i < cdP2.length; i++) {
+            cdP2[i].setCd(i);
+        }
+    }
+
+    public void resetSkillBtn() {
+        for (SkillButton skillButton : skillButtonsP1) {
+            skillButton.setMouseReleased(false);
+            skillButton.setMousePressed(false);
+        }
+        for (SkillButton skillButton : skillButtonsP2) {
+            skillButton.setMouseReleased(false);
+            skillButton.setMousePressed(false);
+        }
+
+    }
+
+    public void resetAttribut() {
+        player1.setDef(tempP1.getDef());
+        player1.setHp(tempP1.getHp());
+        player1.setAtk(tempP1.getAtk());
+        player2.setDef(tempP2.getDef());
+        player2.setHp(tempP2.getHp());
+        player2.setAtk(tempP2.getAtk());
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
+    public boolean isPause() {
+        return pause;
+    }
+
+    public int getGameOver() {
+        return gameOver;
     }
 }

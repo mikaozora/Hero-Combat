@@ -14,7 +14,7 @@ public class Dwarf extends Entity{
     private int width, height;
 
     public Dwarf(int x, int y, int width, int height) {
-        super(x, y, 600, 40, 50);
+        super(x, y, HP, ATK, DEF);
         initSkills();
         this.width = width;
         this.height = height;
