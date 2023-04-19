@@ -1,43 +1,54 @@
 package gamestates;
 
-import entities.*;
+import entities.AlmoGarden;
+import entities.Dwarf;
+import entities.Entity;
+import entities.KingGarden;
+import entities.Samurai;
+import entities.Skill;
+import entities.Wizard;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.util.Arrays;
 import main.Game;
 import ui.GameoverOverlay;
 import ui.PauseOverlay;
 import ui.SkillButton;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.util.Arrays;
-
-import static utils.Constant.*;
-
 public class Playing extends States implements Statemethods {
-    private Entity player1, player2, tempP1, tempP2;
+    private Entity player1;
+    private Entity player2;
+    private Entity tempP1;
+    private Entity tempP2;
     private AlmoGarden almo;
     private KingGarden kingGarden;
     private final int scale = 3;
-    private PlayerStates p1, p2;
+    private PlayerStates p1;
+    private PlayerStates p2;
     private MapStates map;
-    BufferedImage skills[] = new BufferedImage[4];
+    BufferedImage[] skills = new BufferedImage[4];
     private SkillButton[] skillButtonsP1 = new SkillButton[4];
     private SkillButton[] skillButtonsP2 = new SkillButton[4];
-    ItemStates p1_item, p2_item;
-    private int turn = 1, tempTurn = 1;
+    ItemStates p1_item;
+    ItemStates p2_item;
+    private int turn = 1;
+    private int tempTurn = 1;
     private Skill[] cdP1 = new Skill[4];
     private Skill[] cdP2 = new Skill[4];
     private boolean[] skillPressedP1 = new boolean[4];
     private boolean[] skillPressedP2 = new boolean[4];
     private boolean[] delayP1 = new boolean[4];
     private boolean[] delayP2 = new boolean[4];
-    private boolean p1Turn = true, p2Turn = false;
+    private boolean p1Turn = true;
+    private boolean p2Turn = false;
     private PauseOverlay pauseOverlay;
     private boolean pause = false;
     private GameoverOverlay gameoverOverlay;
-    private int gameOver = -1; // -1 = not end, 0 = p1 win, 1 = p2 win
+    private int gameOver = -1;
 
     public Playing(Game game, PlayerStates p1, PlayerStates p2, ItemStates p1_item, ItemStates p2_item, MapStates map) {
         super(game);
@@ -46,386 +57,539 @@ public class Playing extends States implements Statemethods {
         this.map = map;
         this.p1_item = p1_item;
         this.p2_item = p2_item;
-        initClasses();
-        loadSkill();
-        loadCd();
-        loadSkillPressed();
+        this.initClasses();
+        this.loadSkill();
+        this.loadCd();
+        this.loadSkillPressed();
     }
 
     private void initClasses() {
-        if (p1 == PlayerStates.WIZARD) {
-            player1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
-            tempP1 = new Wizard(PlayerPosition.xPosP1, PlayerPosition.yPosP1, WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
-        } else if (p1 == PlayerStates.SAMURAI) {
-            player1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
-            tempP1 = new Samurai(PlayerPosition.xPosP1, PlayerPosition.yPosP1, SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
-        } else if (p1 == PlayerStates.DWARF) {
-            player1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
-            tempP1 = new Dwarf(PlayerPosition.xPosP1, PlayerPosition.yPosP1, DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
-        }
-        if (p2 == PlayerStates.WIZARD) {
-            player2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
-            tempP2 = new Wizard(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -WizardConstant.WIDTH * scale, WizardConstant.HEIGHT * scale);
-        } else if (p2 == PlayerStates.SAMURAI) {
-            player2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
-            tempP2 = new Samurai(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -SamuraiConstant.WIDTH * scale, SamuraiConstant.HEIGHT * scale);
-        } else if (p2 == PlayerStates.DWARF) {
-            player2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
-            tempP2 = new Dwarf(PlayerPosition.xPosP2, PlayerPosition.yPosP2, -DwarfConstant.WIDTH * scale, DwarfConstant.HEIGHT * scale);
-        }
-        if (p1_item == ItemStates.SHIELD) {
-            player1.setDef(player1.getDef() + 500);
-            tempP1.setDef(tempP1.getDef() + 500);
-        } else if (p1_item == ItemStates.SWORD) {
-            player1.setAtk(player1.getAtk() + 500);
-            tempP1.setDef(tempP1.getDef() + 500);
-        }
-        if (p2_item == ItemStates.SHIELD) {
-            player2.setDef(player2.getDef() + 500);
-            tempP2.setDef(tempP2.getDef() + 500);
-        } else if (p2_item == ItemStates.SWORD) {
-//            player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
-            player2.setAtk(player2.getAtk() + 500);
-            tempP2.setAtk(tempP2.getAtk() + 500);
+        if (this.p1 == PlayerStates.WIZARD) {
+            this.player1 = new Wizard(167, 195, 384, 384);
+            this.tempP1 = new Wizard(167, 195, 384, 384);
+        } else if (this.p1 == PlayerStates.SAMURAI) {
+            this.player1 = new Samurai(167, 195, 384, 384);
+            this.tempP1 = new Samurai(167, 195, 384, 384);
+        } else if (this.p1 == PlayerStates.DWARF) {
+            this.player1 = new Dwarf(167, 195, 384, 384);
+            this.tempP1 = new Dwarf(167, 195, 384, 384);
         }
 
-        almo = new AlmoGarden(0, 0);
-        kingGarden = new KingGarden(0, 0);
-        pauseOverlay = new PauseOverlay(this);
-        gameoverOverlay = new GameoverOverlay(this);
+        if (this.p2 == PlayerStates.WIZARD) {
+            this.player2 = new Wizard(1265, 195, -384, 384);
+            this.tempP2 = new Wizard(1265, 195, -384, 384);
+        } else if (this.p2 == PlayerStates.SAMURAI) {
+            this.player2 = new Samurai(1265, 195, -384, 384);
+            this.tempP2 = new Samurai(1265, 195, -384, 384);
+        } else if (this.p2 == PlayerStates.DWARF) {
+            this.player2 = new Dwarf(1265, 195, -384, 384);
+            this.tempP2 = new Dwarf(1265, 195, -384, 384);
+        }
+
+        if (this.p1_item == ItemStates.SHIELD) {
+            this.player1.setDef(this.player1.getDef() + 500);
+            this.tempP1.setDef(this.tempP1.getDef() + 500);
+        } else if (this.p1_item == ItemStates.SWORD) {
+            if (p1 == PlayerStates.DWARF){
+                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
+                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
+                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+            } else if (p1 == PlayerStates.SAMURAI) {
+                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
+                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
+                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+            } else if (p1 == PlayerStates.WIZARD) {
+                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
+                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
+                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+                player1.getSkills().get(3).setDamage(player1.getSkills().get(3).getDamage() + 500);
+            }
+
+            this.player1.setAtk(this.player1.getAtk() + 500);
+            this.tempP1.setDef(this.tempP1.getDef() + 500);
+        }
+
+        if (this.p2_item == ItemStates.SHIELD) {
+            this.player2.setDef(this.player2.getDef() + 500);
+            this.tempP2.setDef(this.tempP2.getDef() + 500);
+        } else if (this.p2_item == ItemStates.SWORD) {
+            if (p2 == PlayerStates.DWARF){
+                player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
+                player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 500);
+                player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 500);
+            } else if (p2 == PlayerStates.SAMURAI) {
+                player2.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
+                player2.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
+                player2.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+            } else if (p2 == PlayerStates.WIZARD) {
+                player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
+                player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 500);
+                player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 500);
+                player2.getSkills().get(3).setDamage(player2.getSkills().get(3).getDamage() + 500);
+            }
+            this.player2.setAtk(this.player2.getAtk() + 500);
+            this.tempP2.setAtk(this.tempP2.getAtk() + 500);
+        }
+
+        this.almo = new AlmoGarden(0, 0);
+        this.kingGarden = new KingGarden(0, 0);
+        this.pauseOverlay = new PauseOverlay(this);
+        this.gameoverOverlay = new GameoverOverlay(this);
     }
 
     private void loadSkill() {
-        skillButtonsP1[0] = new SkillButton(57, 205, 0, player1, 3);
-        skillButtonsP1[1] = new SkillButton(57, 329, 1, player1, 2);
-        skillButtonsP1[2] = new SkillButton(57, 454, 2, player1, 1);
-        skillButtonsP1[3] = new SkillButton(57, 579, 3, player1, 0);
-        skillButtonsP2[0] = new SkillButton(1251, 205, 0, player2, 3);
-        skillButtonsP2[1] = new SkillButton(1251, 329, 1, player2, 2);
-        skillButtonsP2[2] = new SkillButton(1251, 454, 2, player2, 1);
-        skillButtonsP2[3] = new SkillButton(1251, 579, 3, player2, 0);
+        this.skillButtonsP1[0] = new SkillButton(57, 205, 0, this.player1, 3);
+        this.skillButtonsP1[1] = new SkillButton(57, 329, 1, this.player1, 2);
+        this.skillButtonsP1[2] = new SkillButton(57, 454, 2, this.player1, 1);
+        this.skillButtonsP1[3] = new SkillButton(57, 579, 3, this.player1, 0);
+        this.skillButtonsP2[0] = new SkillButton(1251, 205, 0, this.player2, 3);
+        this.skillButtonsP2[1] = new SkillButton(1251, 329, 1, this.player2, 2);
+        this.skillButtonsP2[2] = new SkillButton(1251, 454, 2, this.player2, 1);
+        this.skillButtonsP2[3] = new SkillButton(1251, 579, 3, this.player2, 0);
     }
 
     public void loadCd() {
-        for (int i = 0; i < cdP1.length; i++) {
-            cdP1[i] = player1.getSkills().get(i);
+        int i;
+        for(i = 0; i < this.cdP1.length; ++i) {
+            this.cdP1[i] = (Skill)this.player1.getSkills().get(i);
         }
-        for (int i = 0; i < cdP2.length; i++) {
-            cdP2[i] = player2.getSkills().get(i);
+
+        for(i = 0; i < this.cdP2.length; ++i) {
+            this.cdP2[i] = (Skill)this.player2.getSkills().get(i);
         }
+
     }
 
     public void loadSkillPressed() {
-        Arrays.fill(skillPressedP1, false);
-        Arrays.fill(skillPressedP2, false);
-        Arrays.fill(delayP1, true);
-        Arrays.fill(delayP2, true);
+        Arrays.fill(this.skillPressedP1, false);
+        Arrays.fill(this.skillPressedP2, false);
+        Arrays.fill(this.delayP1, true);
+        Arrays.fill(this.delayP2, true);
     }
 
-    @Override
     public void update() {
-        if (gameOver == -1) {
-            if (!pause) {
-                player1.update();
-                player2.update();
-                for (SkillButton sb : skillButtonsP1) {
+        if (this.gameOver == -1) {
+            if (!this.pause) {
+                this.player1.update();
+                this.player2.update();
+                SkillButton[] var1 = this.skillButtonsP1;
+                int var2 = var1.length;
+
+                int var3;
+                SkillButton sb;
+                for(var3 = 0; var3 < var2; ++var3) {
+                    sb = var1[var3];
                     sb.update();
                 }
-                for (SkillButton sb : skillButtonsP2) {
+
+                var1 = this.skillButtonsP2;
+                var2 = var1.length;
+
+                for(var3 = 0; var3 < var2; ++var3) {
+                    sb = var1[var3];
                     sb.update();
                 }
             } else {
-                pauseOverlay.update();
+                this.pauseOverlay.update();
             }
-        }else{
-            gameoverOverlay.update();
+        } else {
+            this.gameoverOverlay.update();
         }
+
     }
 
-    @Override
     public void draw(Graphics2D g2) {
-        if (map == MapStates.ALMO_GARDEN) {
-            almo.render(g2);
-        } else if (map == MapStates.KING_GARDEN) {
-            kingGarden.render(g2);
+        if (this.map == MapStates.ALMO_GARDEN) {
+            this.almo.render(g2);
+        } else if (this.map == MapStates.KING_GARDEN) {
+            this.kingGarden.render(g2);
         }
-        player1.render(g2);
-        player2.render(g2);
-        drawDetails(g2);
-        for (SkillButton sb : skillButtonsP1) {
+
+        this.player1.render(g2);
+        this.player2.render(g2);
+        this.drawDetails(g2);
+        SkillButton[] var2 = this.skillButtonsP1;
+        int var3 = var2.length;
+
+        int var4;
+        SkillButton sb;
+        for(var4 = 0; var4 < var3; ++var4) {
+            sb = var2[var4];
             sb.draw(g2);
         }
-        for (SkillButton sb : skillButtonsP2) {
+
+        var2 = this.skillButtonsP2;
+        var3 = var2.length;
+
+        for(var4 = 0; var4 < var3; ++var4) {
+            sb = var2[var4];
             sb.draw(g2);
         }
-        drawTurn(g2);
-        if (pause) {
-            pauseOverlay.draw(g2);
+
+        this.drawTurn(g2);
+        if (this.pause) {
+            this.pauseOverlay.draw(g2);
         }
-        if(gameOver != -1){
-            gameoverOverlay.draw(g2);
+
+        if (this.gameOver != -1) {
+            this.gameoverOverlay.draw(g2);
         }
+
     }
 
     public void drawTurn(Graphics2D g2) {
-        g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 20));
-        g2.drawString("" + turn, 650, 40);
-        g2.drawString((p1Turn ? "P1 Turn" : "P2 Turn"), 700, 100);
+        g2.setFont(new Font("Plus Jakarta Sans", 1, 20));
+        int var10001 = this.turn;
+        g2.drawString("" + var10001, 650, 40);
+        g2.drawString(this.p1Turn ? "P1 Turn" : "P2 Turn", 700, 100);
     }
 
     public void drawDetails(Graphics2D g2) {
         g2.setColor(Color.white);
-        g2.drawString("Hp:" + player1.getHp(), 10, 50);
-        g2.drawString("ATK:" + player1.getAtk(), 60, 50);
-        g2.drawString("DEF:" + player1.getDef(), 110, 50);
-        g2.drawString("ITEM:" + p1_item, 200, 50);
-        g2.drawString("Hp:" + player2.getHp(), 1000, 100);
-        g2.drawString("ATK:" + player2.getAtk(), 1050, 100);
-        g2.drawString("DEF:" + player2.getDef(), 1100, 100);
-        g2.drawString("ITEM:" + p2_item, 1150, 100);
+        g2.drawString("Hp:" + this.player1.getHp(), 10, 50);
+        g2.drawString("ATK:" + this.player1.getAtk(), 60, 50);
+        g2.drawString("DEF:" + this.player1.getDef(), 110, 50);
+        g2.drawString("ITEM:" + String.valueOf(this.p1_item), 200, 50);
+        g2.drawString("Hp:" + this.player2.getHp(), 1000, 100);
+        g2.drawString("ATK:" + this.player2.getAtk(), 1050, 100);
+        g2.drawString("DEF:" + this.player2.getDef(), 1100, 100);
+        g2.drawString("ITEM:" + String.valueOf(this.p2_item), 1150, 100);
     }
 
-    @Override
     public void mouseClicked(MouseEvent e) {
+
     }
 
-    @Override
     public void mouseMoved(MouseEvent e) {
-        if (pause) {
-            pauseOverlay.mouseMoved(e);
+        if (this.pause) {
+            this.pauseOverlay.mouseMoved(e);
         }
-        if(gameOver != -1){
-            gameoverOverlay.mouseMoved(e);
+
+        if (this.gameOver != -1) {
+            this.gameoverOverlay.mouseMoved(e);
         }
+
     }
 
-    @Override
     public void mousePressed(MouseEvent e) {
-        if (pause) {
-            pauseOverlay.mousePressed(e);
+        if (this.pause) {
+            this.pauseOverlay.mousePressed(e);
         }
-        if(gameOver != -1){
-            gameoverOverlay.mousePressed(e);
+
+        if (this.gameOver != -1) {
+            this.gameoverOverlay.mousePressed(e);
         }
-        if (p1Turn) {
-            skillPressP1(e);
-        } else if (p2Turn) {
-            skillPressP2(e);
+
+        if (this.p1Turn) {
+            this.skillPressP1(e);
+        } else if (this.p2Turn) {
+            this.skillPressP2(e);
         }
+
     }
 
-    @Override
     public void mouseReleased(MouseEvent e) {
-        if (pause) {
-            pauseOverlay.mouseReleased(e);
+        if (this.pause) {
+            this.pauseOverlay.mouseReleased(e);
         }
-        if(gameOver != -1){
-            gameoverOverlay.mouseReleased(e);
+
+        if (this.gameOver != -1) {
+            this.gameoverOverlay.mouseReleased(e);
         }
-        if (p1Turn) {
-            skillReleaseP1(e);
-        } else if (p2Turn) {
-            skillReleaseP2(e);
+
+        if (this.p1Turn) {
+            this.skillReleaseP1(e);
+        } else if (this.p2Turn) {
+            this.skillReleaseP2(e);
         }
+
     }
 
     public void skillPressP1(MouseEvent e) {
-        for (SkillButton sb : skillButtonsP1) {
-            if (isInSb(sb, e)) {
+        SkillButton[] var2 = this.skillButtonsP1;
+        int var3 = var2.length;
+
+        for(int var4 = 0; var4 < var3; ++var4) {
+            SkillButton sb = var2[var4];
+            if (this.isInSb(sb, e)) {
                 sb.setMousePressed(true);
                 break;
             }
         }
+
     }
 
     public void skillPressP2(MouseEvent e) {
-        for (SkillButton sb : skillButtonsP2) {
-            if (isInSb(sb, e)) {
+        SkillButton[] var2 = this.skillButtonsP2;
+        int var3 = var2.length;
+
+        for(int var4 = 0; var4 < var3; ++var4) {
+            SkillButton sb = var2[var4];
+            if (this.isInSb(sb, e)) {
                 sb.setMousePressed(true);
                 break;
             }
         }
+
     }
 
     public void skillReleaseP1(MouseEvent e) {
-        for (SkillButton sb : skillButtonsP1) {
-            if (!skillPressedP1[sb.getAction()]) {
-                if (isInSb(sb, e)) {
-                    if (sb.isMousePressed()) {
-                        sb.applyAction();
-                        sb.setMouseReleased(true);
-                        if (sb.getAction() != 0) {
-                            skillPressedP1[sb.getAction()] = true;
-                        }
-                        if (player2.getDef() > 0) {
-                            player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
-                        } else if (player2.getHp() > 0) {
-                            player2.setHp(player2.getHp() + player2.getDef());
-                            player2.setHp(player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage());
-                        } else {
-                            System.out.println("Player 1 win");
-                        }
-                        p1Turn = false;
-                        p2Turn = true;
+        SkillButton[] var2 = this.skillButtonsP1;
+        int var3 = var2.length;
+
+        for(int var4 = 0; var4 < var3; ++var4) {
+            SkillButton sb = var2[var4];
+            if (!this.skillPressedP1[sb.getAction()] && this.isInSb(sb, e)) {
+                if (sb.isMousePressed()) {
+                    sb.applyAction();
+                    sb.setMouseReleased(true);
+                    if (sb.getAction() != 0) {
+                        this.skillPressedP1[sb.getAction()] = true;
                     }
-                    break;
+
+                    if (p1 == PlayerStates.SAMURAI && sb.getAction() == 3){
+                        player1.setHp(player1.getHp() + 90);
+                    } else if (p1 == PlayerStates.DWARF && sb.getAction() == 3) {
+                        player1.setDef(player1.getDef() + 90);
+                    }else {
+                        if (player2.getDef() > 0) {
+                            if ((player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
+                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
+                                player2.setHp(player2.getHp() + player2.getDef());
+                                player2.setDef(0);
+                                if (player2.getHp() <= 0){
+                                    gameOver = 0;
+                                }
+                            }else {
+                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
+                                if (player2.getHp() <= 0){
+                                    gameOver = 0;
+                                }
+                            }
+                        } else if (player2.getHp() > 0) {
+                            if ((player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
+                                player2.setHp(0);
+                                gameOver = 0;
+                            }else {
+                                player2.setHp(player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage());
+                                if (player2.getHp() <= 0){
+                                    gameOver = 0;
+                                }
+                            }
+                        } else if(player2.getHp() <= 0) {
+                            gameOver = 0;
+                        }
+                    }
+
+                    this.p1Turn = false;
+                    this.p2Turn = true;
                 }
+                break;
             }
+
             sb.resetAni();
         }
-        resetButton();
+
+        this.resetButton();
     }
 
     public void skillReleaseP2(MouseEvent e) {
-        for (SkillButton sb : skillButtonsP2) {
-            if (!skillPressedP2[sb.getAction()]) {
-                if (isInSb(sb, e)) {
-                    if (sb.isMousePressed()) {
-                        sb.applyAction();
-                        sb.setMouseReleased(true);
-                        if (sb.getAction() != 0) {
-                            skillPressedP2[sb.getAction()] = true;
-                        }
-                        if (player1.getDef() > 0) {
-                            player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
-                        } else if (player1.getHp() > 0) {
-                            player1.setHp(player1.getHp() + player1.getDef());
-                            player1.setHp(player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage());
-                        } else {
-                            System.out.println("Player 2 win");
-                        }
-                        p1Turn = true;
-                        p2Turn = false;
-                        turn++;
-                        cdProcess();
+        SkillButton[] var2 = this.skillButtonsP2;
+        int var3 = var2.length;
+
+        for(int var4 = 0; var4 < var3; ++var4) {
+            SkillButton sb = var2[var4];
+            if (!this.skillPressedP2[sb.getAction()] && this.isInSb(sb, e)) {
+                if (sb.isMousePressed()) {
+                    sb.applyAction();
+                    sb.setMouseReleased(true);
+                    if (sb.getAction() != 0) {
+                        this.skillPressedP2[sb.getAction()] = true;
                     }
-                    break;
+
+                    if (p2 == PlayerStates.SAMURAI && sb.getAction() == 3){
+                        player2.setHp(player2.getHp() + 90);
+                    } else if (p2 == PlayerStates.DWARF && sb.getAction() == 3) {
+                        player2.setDef(player2.getDef() + 90);
+                    }else {
+                        if (player1.getDef() > 0) {
+                            if ((player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
+                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
+                                player1.setHp(player1.getHp() + player1.getDef());
+                                player1.setDef(0);
+                                if (player2.getHp() <= 0){
+                                    gameOver = 1;
+                                }
+                            }else {
+                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
+                                if (player2.getHp() <= 0){
+                                    gameOver = 1;
+                                }
+                            }
+                        } else if (player1.getHp() > 0) {
+                            if ((player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
+                                player1.setHp(0);
+                                gameOver = 1;
+                            }else {
+                                player1.setHp(player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage());
+                                if (player2.getHp() <= 0){
+                                    gameOver = 1;
+                                }
+                            }
+                        } else if(player1.getHp() <= 0) {
+                            gameOver = 1;
+                        }
+                    }
+                    p1Turn = true;
+                    p2Turn = false;
+                    turn++;
+                    cdProcess();
                 }
+                break;
             }
+
             sb.resetAni();
         }
-        resetButton();
+
+        this.resetButton();
     }
 
     public void resetButton() {
-        for (SkillButton sb : skillButtonsP1) {
+        SkillButton[] var1 = this.skillButtonsP1;
+        int var2 = var1.length;
+
+        int var3;
+        SkillButton sb;
+        for(var3 = 0; var3 < var2; ++var3) {
+            sb = var1[var3];
             sb.resetBool();
         }
-        for (SkillButton sb : skillButtonsP2) {
+
+        var1 = this.skillButtonsP2;
+        var2 = var1.length;
+
+        for(var3 = 0; var3 < var2; ++var3) {
+            sb = var1[var3];
             sb.resetBool();
         }
+
     }
 
     public void cdProcess() {
-        cdProcessP1();
-        cdProcessP2();
+        this.cdProcessP1();
+        this.cdProcessP2();
     }
 
     public void cdProcessP1() {
-        if (skillPressedP1[3]) {
-            if (!delayP1[3]) {
-                if (cdP1[3].getCd() > 0) {
-                    cdP1[3].setCd(cdP1[3].getCd() - 1);
-                    if (cdP1[3].getCd() == 0) {
-                        cdP1[3].setCd(3);
-                        skillPressedP1[3] = false;
-                        skillButtonsP1[0].setMouseReleased(false);
-                        delayP1[3] = true;
+        if (this.skillPressedP1[3]) {
+            if (!this.delayP1[3]) {
+                if (this.cdP1[3].getCd() > 0) {
+                    this.cdP1[3].setCd(this.cdP1[3].getCd() - 1);
+                    if (this.cdP1[3].getCd() == 0) {
+                        this.cdP1[3].setCd(3);
+                        this.skillPressedP1[3] = false;
+                        this.skillButtonsP1[0].setMouseReleased(false);
+                        this.delayP1[3] = true;
                     }
                 }
             } else {
-                delayP1[3] = false;
+                this.delayP1[3] = false;
             }
         }
-        if (skillPressedP1[1]) {
-            if (!delayP1[1]) {
-                if (cdP1[1].getCd() > 0) {
-                    cdP1[1].setCd(cdP1[1].getCd() - 1);
-                    if (cdP1[1].getCd() == 0) {
-                        cdP1[1].setCd(1);
-                        skillPressedP1[1] = false;
-                        skillButtonsP1[2].setMouseReleased(false);
-                        delayP1[1] = true;
+
+        if (this.skillPressedP1[1]) {
+            if (!this.delayP1[1]) {
+                if (this.cdP1[1].getCd() > 0) {
+                    this.cdP1[1].setCd(this.cdP1[1].getCd() - 1);
+                    if (this.cdP1[1].getCd() == 0) {
+                        this.cdP1[1].setCd(1);
+                        this.skillPressedP1[1] = false;
+                        this.skillButtonsP1[2].setMouseReleased(false);
+                        this.delayP1[1] = true;
                     }
                 }
             } else {
-                delayP1[1] = false;
+                this.delayP1[1] = false;
             }
         }
-        if (skillPressedP1[2]) {
-            if (!delayP1[2]) {
-                if (cdP1[2].getCd() > 0) {
-                    cdP1[2].setCd(cdP1[2].getCd() - 1);
-                    if (cdP1[2].getCd() == 0) {
-                        cdP1[2].setCd(2);
-                        skillPressedP1[2] = false;
-                        skillButtonsP1[1].setMouseReleased(false);
-                        delayP1[2] = true;
+
+        if (this.skillPressedP1[2]) {
+            if (!this.delayP1[2]) {
+                if (this.cdP1[2].getCd() > 0) {
+                    this.cdP1[2].setCd(this.cdP1[2].getCd() - 1);
+                    if (this.cdP1[2].getCd() == 0) {
+                        this.cdP1[2].setCd(2);
+                        this.skillPressedP1[2] = false;
+                        this.skillButtonsP1[1].setMouseReleased(false);
+                        this.delayP1[2] = true;
                     }
                 }
             } else {
-                delayP1[2] = false;
+                this.delayP1[2] = false;
             }
         }
+
     }
 
     public void cdProcessP2() {
-        if (skillPressedP2[3]) {
-            if (!delayP2[3]) {
-                if (cdP2[3].getCd() > 0) {
-                    cdP2[3].setCd(cdP2[3].getCd() - 1);
-                    if (cdP2[3].getCd() == 0) {
-                        cdP2[3].setCd(3);
-                        skillPressedP2[3] = false;
-                        skillButtonsP2[0].setMouseReleased(false);
-                        delayP2[3] = true;
+        if (this.skillPressedP2[3]) {
+            if (!this.delayP2[3]) {
+                if (this.cdP2[3].getCd() > 0) {
+                    this.cdP2[3].setCd(this.cdP2[3].getCd() - 1);
+                    if (this.cdP2[3].getCd() == 0) {
+                        this.cdP2[3].setCd(3);
+                        this.skillPressedP2[3] = false;
+                        this.skillButtonsP2[0].setMouseReleased(false);
+                        this.delayP2[3] = true;
                     }
                 }
             } else {
-                delayP2[3] = false;
+                this.delayP2[3] = false;
             }
         }
-        if (skillPressedP2[1]) {
-            if (!delayP2[1]) {
-                if (cdP2[1].getCd() > 0) {
-                    cdP2[1].setCd(cdP2[1].getCd() - 1);
-                    if (cdP2[1].getCd() == 0) {
-                        cdP2[1].setCd(1);
-                        skillPressedP2[1] = false;
-                        skillButtonsP2[2].setMouseReleased(false);
-                        delayP2[1] = true;
+
+        if (this.skillPressedP2[1]) {
+            if (!this.delayP2[1]) {
+                if (this.cdP2[1].getCd() > 0) {
+                    this.cdP2[1].setCd(this.cdP2[1].getCd() - 1);
+                    if (this.cdP2[1].getCd() == 0) {
+                        this.cdP2[1].setCd(1);
+                        this.skillPressedP2[1] = false;
+                        this.skillButtonsP2[2].setMouseReleased(false);
+                        this.delayP2[1] = true;
                     }
                 }
             } else {
-                delayP2[1] = false;
+                this.delayP2[1] = false;
             }
         }
-        if (skillPressedP2[2]) {
-            if (!delayP2[2]) {
-                if (cdP2[2].getCd() > 0) {
-                    cdP2[2].setCd(cdP2[2].getCd() - 1);
-                    if (cdP2[2].getCd() == 0) {
-                        cdP2[2].setCd(2);
-                        skillPressedP2[2] = false;
-                        skillButtonsP2[1].setMouseReleased(false);
-                        delayP2[2] = true;
+
+        if (this.skillPressedP2[2]) {
+            if (!this.delayP2[2]) {
+                if (this.cdP2[2].getCd() > 0) {
+                    this.cdP2[2].setCd(this.cdP2[2].getCd() - 1);
+                    if (this.cdP2[2].getCd() == 0) {
+                        this.cdP2[2].setCd(2);
+                        this.skillPressedP2[2] = false;
+                        this.skillButtonsP2[1].setMouseReleased(false);
+                        this.delayP2[2] = true;
                     }
                 }
             } else {
-                delayP2[2] = false;
+                this.delayP2[2] = false;
             }
         }
+
     }
 
-    @Override
     public void keyPressed(KeyEvent e) {
-        if (gameOver == -1) {
+        if (this.gameOver == -1) {
             switch (e.getKeyCode()) {
-                case KeyEvent.VK_ESCAPE -> pause = !pause;
-                case KeyEvent.VK_0 -> gameOver = 0; // test
-                case KeyEvent.VK_1 -> gameOver = 1; // test
+                case 27:
+                    this.pause = !this.pause;
             }
         }
+
     }
 
     public void unPauseGame() {
@@ -433,31 +597,45 @@ public class Playing extends States implements Statemethods {
     }
 
     public void rematch() {
-        turn = 1;
-        p1Turn = true;
-        p2Turn = false;
-        gameOver = -1;
-        loadSkillPressed();
-        resetSkillBtn();
-        resetCd();
-        resetAttribut();
+        this.turn = 1;
+        this.p1Turn = true;
+        this.p2Turn = false;
+        this.gameOver = -1;
+        this.loadSkillPressed();
+        this.resetSkillBtn();
+        this.resetCd();
+        this.resetAttribut();
     }
 
     public void resetCd() {
-        for (int i = 0; i < cdP1.length; i++) {
-            cdP1[i].setCd(i);
+        int i;
+        for(i = 0; i < this.cdP1.length; ++i) {
+            this.cdP1[i].setCd(i);
         }
-        for (int i = 0; i < cdP2.length; i++) {
-            cdP2[i].setCd(i);
+
+        for(i = 0; i < this.cdP2.length; ++i) {
+            this.cdP2[i].setCd(i);
         }
+
     }
 
     public void resetSkillBtn() {
-        for (SkillButton skillButton : skillButtonsP1) {
+        SkillButton[] var1 = this.skillButtonsP1;
+        int var2 = var1.length;
+
+        int var3;
+        SkillButton skillButton;
+        for(var3 = 0; var3 < var2; ++var3) {
+            skillButton = var1[var3];
             skillButton.setMouseReleased(false);
             skillButton.setMousePressed(false);
         }
-        for (SkillButton skillButton : skillButtonsP2) {
+
+        var1 = this.skillButtonsP2;
+        var2 = var1.length;
+
+        for(var3 = 0; var3 < var2; ++var3) {
+            skillButton = var1[var3];
             skillButton.setMouseReleased(false);
             skillButton.setMousePressed(false);
         }
@@ -465,12 +643,12 @@ public class Playing extends States implements Statemethods {
     }
 
     public void resetAttribut() {
-        player1.setDef(tempP1.getDef());
-        player1.setHp(tempP1.getHp());
-        player1.setAtk(tempP1.getAtk());
-        player2.setDef(tempP2.getDef());
-        player2.setHp(tempP2.getHp());
-        player2.setAtk(tempP2.getAtk());
+        this.player1.setDef(this.tempP1.getDef());
+        this.player1.setHp(this.tempP1.getHp());
+        this.player1.setAtk(this.tempP1.getAtk());
+        this.player2.setDef(this.tempP2.getDef());
+        this.player2.setHp(this.tempP2.getHp());
+        this.player2.setAtk(this.tempP2.getAtk());
     }
 
     public void setPause(boolean pause) {
@@ -478,10 +656,13 @@ public class Playing extends States implements Statemethods {
     }
 
     public boolean isPause() {
-        return pause;
+        return this.pause;
     }
 
     public int getGameOver() {
-        return gameOver;
+        return this.gameOver;
+    }
+    public void  setGameOver(int gameOver){
+        this.gameOver = gameOver;
     }
 }
