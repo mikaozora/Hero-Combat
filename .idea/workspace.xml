@@ -4,52 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e89fe181-190e-49de-a3c0-31f5ad9832f7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/bg-pause.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/pause-button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hero Combat/bg-pause.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hero Combat/pause-button.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/PauseOverlay.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$PauseBtn.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/GameoverOverlay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/PauseOverlay.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/UrmButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice/src/Week13/GameFrame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../practice/src/Week14/Main.java" afterDir="false" />
+    <list default="true" id="7e425d6b-3898-4ca5-8c33-248b7cd5b3c6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$DwarfConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$DwarfConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$PlayerPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$PlayerPosition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$SamuraiConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$SamuraiConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$SkillPosition.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$SkillPosition.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$Charpick.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$Charpick.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$CharpickBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$CharpickBtn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsBtn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsImg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MapsImg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MenuBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$MenuBtn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemBtn.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemBtn.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemImg.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton$ItemImg.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI$SkillButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$UI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$WizardConstant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant$WizardConstant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/Constant.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/utils/LoadSave.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Dwarf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Dwarf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Samurai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Samurai.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/PickChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/PickMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/States.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Constant.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Constant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/LoadSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/LoadSave.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
