@@ -1,5 +1,6 @@
 package main;
 
+import audio.AudioPlayer;
 import entities.Wizard;
 import gamestates.*;
 import gamestates.Menu;
@@ -17,6 +18,8 @@ public class Game implements Runnable{
     private PickChar pickChar;
     private PickItem pickItem;
     private PickMap pickMap;
+    private AudioPlayer audioPlayer;
+//    private AudioOptions audioOptions;
     public Game() {
         initClasses();
         gp = new GamePanel(this);
@@ -27,6 +30,7 @@ public class Game implements Runnable{
 
     private void initClasses(){
         menu = new Menu(this);
+        audioPlayer = new AudioPlayer();
 //        pickChar = new PickChar(this);
 //        playing = new Playing(this);
 //        pickItem = new PickItem(this,null,null);
@@ -117,6 +121,10 @@ public class Game implements Runnable{
 
     public void setPickMap(PickMap pickMap) {
         this.pickMap = pickMap;
+    }
+
+    public AudioPlayer getAudioPlayer() {
+        return audioPlayer;
     }
 
     @Override

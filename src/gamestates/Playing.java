@@ -1,5 +1,6 @@
 package gamestates;
 
+import audio.AudioPlayer;
 import entities.AlmoGarden;
 import entities.Dwarf;
 import entities.Entity;
@@ -18,6 +19,7 @@ import main.Game;
 import ui.GameoverOverlay;
 import ui.PauseOverlay;
 import ui.SkillButton;
+import utils.Constant;
 
 public class Playing extends States implements Statemethods {
     private Entity player1;
@@ -35,7 +37,7 @@ public class Playing extends States implements Statemethods {
     private SkillButton[] skillButtonsP2 = new SkillButton[4];
     ItemStates p1_item;
     ItemStates p2_item;
-    private int turn = 1;
+    private int turn = 1, k = 0;
     private int tempTurn = 1;
     private Skill[] cdP1 = new Skill[4];
     private Skill[] cdP2 = new Skill[4];
@@ -64,27 +66,29 @@ public class Playing extends States implements Statemethods {
     }
 
     private void initClasses() {
-        if (this.p1 == PlayerStates.WIZARD) {
-            this.player1 = new Wizard(167, 195, 384, 384);
-            this.tempP1 = new Wizard(167, 195, 384, 384);
-        } else if (this.p1 == PlayerStates.SAMURAI) {
-            this.player1 = new Samurai(167, 195, 384, 384);
-            this.tempP1 = new Samurai(167, 195, 384, 384);
-        } else if (this.p1 == PlayerStates.DWARF) {
-            this.player1 = new Dwarf(167, 195, 384, 384);
-            this.tempP1 = new Dwarf(167, 195, 384, 384);
+        if (p1 == PlayerStates.WIZARD) {
+            player1 = new Wizard(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 1, game);
+            tempP1 = new Wizard(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 1, game);
+        } else if (p1 == PlayerStates.SAMURAI) {
+            player1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game);
+            tempP1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game);
+        }else if(p1 == PlayerStates.DWARF){
+            player1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game);
+            tempP1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game);
+        }
+        if (p2 == PlayerStates.WIZARD) {
+            player2 = new Wizard(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 2, game);
+            tempP2 = new Wizard(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 2, game);
+        } else if (p2 == PlayerStates.SAMURAI) {
+            player2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game);
+            tempP2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game);
+        }else if(p2 == PlayerStates.DWARF){
+            player2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game);
+            tempP2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game);
         }
 
-        if (this.p2 == PlayerStates.WIZARD) {
-            this.player2 = new Wizard(1265, 195, -384, 384);
-            this.tempP2 = new Wizard(1265, 195, -384, 384);
-        } else if (this.p2 == PlayerStates.SAMURAI) {
-            this.player2 = new Samurai(1265, 195, -384, 384);
-            this.tempP2 = new Samurai(1265, 195, -384, 384);
-        } else if (this.p2 == PlayerStates.DWARF) {
-            this.player2 = new Dwarf(1265, 195, -384, 384);
-            this.tempP2 = new Dwarf(1265, 195, -384, 384);
-        }
+        player2.enemy = player1;
+        player1.enemy = player2;
 
         if (this.p1_item == ItemStates.SHIELD) {
             this.player1.setDef(this.player1.getDef() + 500);
@@ -167,6 +171,7 @@ public class Playing extends States implements Statemethods {
         Arrays.fill(this.delayP2, true);
     }
 
+    @Override
     public void update() {
         if (this.gameOver == -1) {
             if (!this.pause) {
@@ -198,6 +203,7 @@ public class Playing extends States implements Statemethods {
 
     }
 
+    @Override
     public void draw(Graphics2D g2) {
         if (this.map == MapStates.ALMO_GARDEN) {
             this.almo.render(g2);
@@ -256,10 +262,12 @@ public class Playing extends States implements Statemethods {
         g2.drawString("ITEM:" + String.valueOf(this.p2_item), 1150, 100);
     }
 
+    @Override
     public void mouseClicked(MouseEvent e) {
 
     }
 
+    @Override
     public void mouseMoved(MouseEvent e) {
         if (this.pause) {
             this.pauseOverlay.mouseMoved(e);
@@ -271,6 +279,7 @@ public class Playing extends States implements Statemethods {
 
     }
 
+    @Override
     public void mousePressed(MouseEvent e) {
         if (this.pause) {
             this.pauseOverlay.mousePressed(e);
@@ -288,6 +297,7 @@ public class Playing extends States implements Statemethods {
 
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
         if (this.pause) {
             this.pauseOverlay.mouseReleased(e);
@@ -347,39 +357,39 @@ public class Playing extends States implements Statemethods {
                         this.skillPressedP1[sb.getAction()] = true;
                     }
 
-                    if (p1 == PlayerStates.SAMURAI && sb.getAction() == 3){
-                        player1.setHp(player1.getHp() + 90);
-                    } else if (p1 == PlayerStates.DWARF && sb.getAction() == 3) {
-                        player1.setDef(player1.getDef() + 90);
-                    }else {
-                        if (player2.getDef() > 0) {
-                            if ((player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
-                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
-                                player2.setHp(player2.getHp() + player2.getDef());
-                                player2.setDef(0);
-                                if (player2.getHp() <= 0){
-                                    gameOver = 0;
-                                }
-                            }else {
-                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
-                                if (player2.getHp() <= 0){
-                                    gameOver = 0;
-                                }
-                            }
-                        } else if (player2.getHp() > 0) {
-                            if ((player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
-                                player2.setHp(0);
-                                gameOver = 0;
-                            }else {
-                                player2.setHp(player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage());
-                                if (player2.getHp() <= 0){
-                                    gameOver = 0;
-                                }
-                            }
-                        } else if(player2.getHp() <= 0) {
-                            gameOver = 0;
-                        }
-                    }
+//                    if (p1 == PlayerStates.SAMURAI && sb.getAction() == 3){
+//                        player1.setHp(player1.getHp() + 90);
+//                    } else if (p1 == PlayerStates.DWARF && sb.getAction() == 3) {
+//                        player1.setDef(player1.getDef() + 90);
+//                    }else {
+//                        if (player2.getDef() > 0) {
+//                            if ((player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
+//                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
+//                                player2.setHp(player2.getHp() + player2.getDef());
+//                                player2.setDef(0);
+//                                if (player2.getHp() <= 0){
+//                                    gameOver = 0;
+//                                }
+//                            }else {
+//                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
+//                                if (player2.getHp() <= 0){
+//                                    gameOver = 0;
+//                                }
+//                            }
+//                        } else if (player2.getHp() > 0) {
+//                            if ((player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
+//                                player2.setHp(0);
+//                                gameOver = 0;
+//                            }else {
+//                                player2.setHp(player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage());
+//                                if (player2.getHp() <= 0){
+//                                    gameOver = 0;
+//                                }
+//                            }
+//                        } else if(player2.getHp() <= 0) {
+//                            gameOver = 0;
+//                        }
+//                    }
 
                     this.p1Turn = false;
                     this.p2Turn = true;
@@ -407,39 +417,103 @@ public class Playing extends States implements Statemethods {
                         this.skillPressedP2[sb.getAction()] = true;
                     }
 
-                    if (p2 == PlayerStates.SAMURAI && sb.getAction() == 3){
-                        player2.setHp(player2.getHp() + 90);
-                    } else if (p2 == PlayerStates.DWARF && sb.getAction() == 3) {
-                        player2.setDef(player2.getDef() + 90);
-                    }else {
-                        if (player1.getDef() > 0) {
-                            if ((player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
-                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
-                                player1.setHp(player1.getHp() + player1.getDef());
-                                player1.setDef(0);
-                                if (player2.getHp() <= 0){
-                                    gameOver = 1;
-                                }
-                            }else {
-                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
-                                if (player2.getHp() <= 0){
-                                    gameOver = 1;
-                                }
-                            }
-                        } else if (player1.getHp() > 0) {
-                            if ((player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
-                                player1.setHp(0);
-                                gameOver = 1;
-                            }else {
-                                player1.setHp(player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage());
-                                if (player2.getHp() <= 0){
-                                    gameOver = 1;
-                                }
-                            }
-                        } else if(player1.getHp() <= 0) {
-                            gameOver = 1;
-                        }
-                    }
+//                    try {
+//                        Thread.sleep(3000);
+//                    } catch (InterruptedException ex) {
+//                        throw new RuntimeException(ex);
+//                    }
+
+//                    if (p2 == PlayerStates.SAMURAI && sb.getAction() == 3){
+//                        player2.setHp(player2.getHp() + 90);
+//                    } else if (p2 == PlayerStates.DWARF && sb.getAction() == 3) {
+//                        player2.setDef(player2.getDef() + 90);
+//                    }else {
+//                        if (player1.getDef() > 0) {
+//                            if ((player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
+//                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
+//                                player1.setHp(player1.getHp() + player1.getDef());
+//                                player1.setDef(0);
+//                                if (player2.getHp() <= 0){
+//                                    if (player1 instanceof Wizard || player1 instanceof Dwarf){
+//                                        player1.setAction(Constant.WizardConstant.DEAD);
+//                                    }else if (player1 instanceof Samurai){
+//                                        player1.setAction(Constant.SamuraiConstant.DEAD);
+//                                    }
+//
+//                                    gameOver = 1;
+//                                }
+//                            }else {
+//                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
+//                                if (player2.getHp() <= 0){
+//                                    if (player1 instanceof Wizard || player1 instanceof Dwarf){
+//                                        player1.setAction(Constant.WizardConstant.DEAD);
+//                                    }else if (player1 instanceof Samurai){
+//                                        player1.setAction(Constant.SamuraiConstant.DEAD);
+//                                    }
+//
+////                                    while (k != 2000){
+////                                        if (k == 1999) {
+//                                            gameOver = 1;
+////                                            break;
+////                                        }
+////                                        k++;
+////                                    }
+//
+//                                }
+//                            }
+//                        } else if (player1.getHp() > 0) {
+//                            if ((player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
+//                                player1.setHp(0);
+//                                if (player1 instanceof Wizard || player1 instanceof Dwarf){
+//                                    player1.setAction(Constant.WizardConstant.DEAD);
+//                                }else if (player1 instanceof Samurai){
+//                                    player1.setAction(Constant.SamuraiConstant.DEAD);
+//                                }
+//
+////                                while (k != 2000){
+////                                    if (k == 1999) {
+//                                        gameOver = 1;
+////                                        break;
+////                                    }
+////                                    k++;
+////                                }
+//
+//                            }else {
+//                                player1.setHp(player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage());
+//                                if (player2.getHp() <= 0){
+//                                    if (player1 instanceof Wizard || player1 instanceof Dwarf){
+//                                        player1.setAction(Constant.WizardConstant.DEAD);
+//                                    }else if (player1 instanceof Samurai){
+//                                        player1.setAction(Constant.SamuraiConstant.DEAD);
+//                                    }
+//
+////                                    while (k != 2000){
+////                                        if (k == 1999) {
+//                                            gameOver = 1;
+////                                            break;
+////                                        }
+////                                        k++;
+////                                    }
+//
+//                                }
+//                            }
+//                        } else if(player1.getHp() <= 0) {
+//
+//                            if (player1 instanceof Wizard || player1 instanceof Dwarf){
+//                                player1.setAction(Constant.WizardConstant.DEAD);
+//                            }else if (player1 instanceof Samurai){
+//                                player1.setAction(Constant.SamuraiConstant.DEAD);
+//                            }
+//
+////                            while (k != 2000){
+////                                if (k == 1999) {
+//                                    gameOver = 1;
+////                                    break;
+////                                }
+////                                k++;
+////                            }
+//                        }
+//                    }
                     p1Turn = true;
                     p2Turn = false;
                     turn++;
@@ -582,6 +656,7 @@ public class Playing extends States implements Statemethods {
 
     }
 
+    @Override
     public void keyPressed(KeyEvent e) {
         if (this.gameOver == -1) {
             switch (e.getKeyCode()) {

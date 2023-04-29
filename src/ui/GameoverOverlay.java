@@ -1,5 +1,6 @@
 package ui;
 
+import audio.AudioPlayer;
 import gamestates.GameStates;
 import gamestates.Playing;
 import utils.LoadSave;
@@ -77,13 +78,18 @@ public class GameoverOverlay {
     public void mouseReleased(MouseEvent e) {
         if (playing.isInPb(restartBtn, e)) {
             if (restartBtn.isMousePressed()) {
+                playing.getGame().getAudioPlayer().playSong(AudioPlayer.FIGHT_BG);
                 playing.rematch();
             }
         } else if (playing.isInPb(menuBtn, e)) {
             if (menuBtn.isMousePressed()) {
                 GameStates.state = GameStates.MENU;
+                playing.getGame().getAudioPlayer().playSong(AudioPlayer.MENU);
                 playing.unPauseGame();
             }
+//            if (menuBtn.getState() == GameStates.MENU){
+//                game.getAudioPlayer().playSong(AudioPlayer.FIGHT_BG);
+//            }
         }
         restartBtn.resetBool();
         menuBtn.resetBool();

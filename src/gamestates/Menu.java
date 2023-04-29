@@ -1,5 +1,6 @@
 package gamestates;
 
+import audio.AudioPlayer;
 import main.Game;
 import ui.MenuButton;
 import utils.LoadSave;
@@ -84,6 +85,7 @@ public class Menu extends States implements Statemethods{
                 if(mb.isMousePressed()){
                     game.setPickChar(new PickChar(game));
                     mb.applyGameState();
+                    System.out.println(mb.getState());
                 }
                 break;
             }
