@@ -1,5 +1,6 @@
 package gamestates;
 
+import audio.AudioPlayer;
 import main.Game;
 import ui.MapsButton;
 import ui.MapsImg;
@@ -161,7 +162,11 @@ public class PickMap extends States implements Statemethods{
                 if (mapGame != MapStates.NULL){
                     game.setPlaying(new Playing(game, p1, p2,p1_item,p2_item, mapGame));
                     chooseMapBtn.applyGameState();
+                    if (chooseMapBtn.getState() == GameStates.PLAYING){
+                        game.getAudioPlayer().playSong(AudioPlayer.FIGHT_BG);
+                    }
                 }
+
             }
         }
 

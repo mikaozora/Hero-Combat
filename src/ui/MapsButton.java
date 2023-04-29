@@ -80,5 +80,9 @@ public class MapsButton{
         mousePressed = false;
     }
 
+    public GameStates getState(){
+        return state;
+    }
+
 
 }

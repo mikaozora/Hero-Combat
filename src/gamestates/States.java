@@ -1,5 +1,6 @@
 package gamestates;
 
+import audio.AudioPlayer;
 import main.Game;
 import ui.*;
 import ui.Charpick;
@@ -51,5 +52,13 @@ public class States {
 
     public Game getGame() {
         return game;
+    }
+
+    public void setGameStates(GameStates state) {
+        switch (state){
+            case MENU -> game.getAudioPlayer().playSong(AudioPlayer.MENU);
+            case PLAYING -> game.getAudioPlayer().playSong(AudioPlayer.FIGHT_BG);
+        }
+        GameStates.state = state;
     }
 }

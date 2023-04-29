@@ -1,22 +1,27 @@
 package entities;
 
+import audio.AudioPlayer;
+import gamestates.PlayerStates;
+import gamestates.Playing;
+import main.Game;
+import utils.Constant;
 import utils.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 import static utils.Constant.WizardConstant.*;
 import static utils.Constant.WizardConstant.getSpriteAmount;
 
+
 public class Wizard extends Entity {
     private BufferedImage[][] hero2;
     private int aniTick, aniIndex, aniSpeed = 20;
-    private int action = IDLE;
+//    private int action = IDLE;
     private int width, height;
 
-    public Wizard(int x, int y, int width, int height) {
-        super(x, y, HP, ATK, DEF);
+    public Wizard(int x, int y, int width, int height, int player, Game game) {
+        super(x, y, HP, ATK, DEF, player, game);
         initSkills();
         this.width = width;
         this.height = height;
@@ -31,6 +36,129 @@ public class Wizard extends Entity {
 
     public void render(Graphics2D g2) {
         g2.drawImage(hero2[action][aniIndex], x, y, width, height, null);
+    }
+
+    @Override
+    protected void doSkill(int atk, int run) {
+        if (player == 1){
+            if (x >= 800 && alreadyAtk == 0){
+                action = atk;
+                sumX*=-1;
+                alreadyAtk = 1;
+                needStop = 0;
+            }
+            else{
+                if(action == atk && z != 277 && atk == ATT3){
+                    if (z >= 70){
+                        enemy.attacked = true;
+                        if (z == 72){
+                            game.getAudioPlayer().playEffect(AudioPlayer.FIREJET);
+                        }
+                        if (z == 150){
+                            checkEnemy();
+                        }
+                    }
+                    z++;
+                    return;
+                }else if(action == atk && z != 155 && atk == ATT2){
+                    if (z >= 100){
+                        enemy.attacked = true;
+                        if (z == 103){
+                            game.getAudioPlayer().playEffect(AudioPlayer.FIREBALL);
+                        }
+                        if (z == 110){
+                            checkEnemy();
+                        }
+                    }
+                    z++;
+                    return;
+                }else if(action == atk && z != 70 && (atk ==  ATT1 || atk == BASIC)){
+                    if (z >= 40){
+                        enemy.attacked = true;
+                        if (z == 43){
+                            game.getAudioPlayer().playEffect(AudioPlayer.STAB_2);
+                        }
+                        if (z == 49){
+                            checkEnemy();
+                        }
+                    }
+                    z++;
+                    return;
+                }
+                if (x <= Constant.PlayerPosition.xPosP1 && needStop == 1){
+                    x = Constant.PlayerPosition.xPosP1;
+                    x-=sumX;
+                    if (action == IDLE){
+                        alreadyAtk = 0;
+                        sumX *= -1;
+                        z = 0;
+                    }
+                }
+                action = run;
+                x+=sumX;
+                needStop = 1;
+            }
+        }else if(player == 2){
+            if (x <= 650 && alreadyAtk == 0){
+                action = atk;
+                sumX*=-1;
+                alreadyAtk = 1;
+                needStop = 0;
+            }
+            else{
+                if(action == atk && z != 277 && atk == ATT3){
+                    if (z >= 70){
+                        enemy.attacked = true;
+                        if (z == 73){
+                            game.getAudioPlayer().playEffect(AudioPlayer.FIREJET);
+                        }
+                        if (z == 150){
+                            checkEnemy();
+                        }
+                    }
+                    z++;
+                    return;
+                }else if(action == atk && z != 155 && atk == ATT2){
+                    if (z >= 100){
+                        enemy.attacked = true;
+                        if (z == 103){
+                            game.getAudioPlayer().playEffect(AudioPlayer.FIREBALL);
+                        }
+                        if (z == 120){
+                            checkEnemy();
+                        }
+                    }
+                    z++;
+                    return;
+                }else if(action == atk && z != 70 && (atk ==  ATT1 || atk == BASIC)){
+
+                    if (z >= 40){
+                        enemy.attacked = true;
+                        if (z == 43){
+                            game.getAudioPlayer().playEffect(AudioPlayer.STAB_2);
+                        }
+                        if (z == 49){
+                            checkEnemy();
+                        }
+                    }
+                    z++;
+                    return;
+                }
+                if (x >= Constant.PlayerPosition.xPosP2 && needStop == 1){
+                    x = Constant.PlayerPosition.xPosP2;
+                    x-=sumX;
+                    if (action == IDLE){
+                        alreadyAtk = 0;
+                        sumX *= -1;
+                        z = 0;
+                    }
+                }
+                action = run;
+                x-=sumX;
+                needStop = 1;
+            }
+
+        }
     }
 
     public void loadAnimations() {
@@ -49,15 +177,6 @@ public class Wizard extends Entity {
         skills.add(new Skill("Fire jet", 3, atk+90));
     }
 
-    public void runP1(){
-        while(x < 1265){
-            for (int i = 0; i < 200; i++) {
-//                System.out.println(".");
-            }
-            x++;
-        }
-    }
-
     void updateAniTick() {
         aniTick++;
         if (aniTick >= aniSpeed) {
@@ -74,17 +193,19 @@ public class Wizard extends Entity {
         int startAni = action;
 
         if (basic){
-            action = BASIC;
+            doSkill(BASIC, RUN);
         }else if(attack1){
-            action = ATT1;
+            doSkill(ATT1, RUN);
         }else if(attack2){
-            action = ATT2;
-        } else if (attack3) {
-            action = ATT3;
-        } else {
+            doSkill(ATT2, RUN);
+        }else if (attack3) {
+            doSkill(ATT3, RUN);
+        }else if(attacked){
+            action = HITTED;
+        }
+        else {
             action = IDLE;
         }
-
 
         if (startAni != action) {
             resetTick();
@@ -101,6 +222,7 @@ public class Wizard extends Entity {
         attack1 = false;
         attack2 = false;
         basic = false;
+        attacked = false;
     }
 
     public void setAttack3(boolean attack3) {
