@@ -4,36 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7e425d6b-3898-4ca5-8c33-248b7cd5b3c6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/audio/AudioPlayer.java" afterDir="false" />
+    <list default="true" id="ca0185b9-e3e9-41c3-8b85-b20e4e490a01" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickChar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/PickMap.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/States.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/main/Game$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/main/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/GameoverOverlay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/GameoverOverlay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/MapsButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/MapsButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/ui/MenuButton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/ui/MenuButton.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Dwarf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Dwarf.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Samurai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Samurai.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/PickChar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickChar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/PickMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/PickMap.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/gamestates/States.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/States.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/GameoverOverlay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/GameoverOverlay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MapsButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MapsButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/MenuButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/MenuButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,12 +36,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Main" />
