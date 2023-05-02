@@ -17,7 +17,7 @@ import static utils.Constant.WizardConstant.*;
 
 public abstract class Entity {
     protected int x, y, hp, atk, def;
-    protected boolean attack3, attack2, attack1, basic;
+    protected boolean attack3, attack2, attack1, basic, dead;
     protected ItemStates item;
     protected ArrayList<Skill> skills;
     protected int action, getIdxAction;
@@ -45,55 +45,25 @@ public abstract class Entity {
                 enemy.setDef(enemy.getDef() - this.getSkills().get(getIdxAction).getDamage());
                 enemy.setHp(enemy.getHp() + enemy.getDef());
                 enemy.setDef(0);
-                if (this.getHp() <= 0){
-                    if (enemy instanceof Wizard || enemy instanceof Dwarf){
-                        enemy.setAction(Constant.WizardConstant.DEAD);
-                    }else if (enemy instanceof Samurai){
-                        enemy.setAction(Constant.SamuraiConstant.DEAD);
-                    }
-
-                    game.getPlaying().setGameOver(1);
-                }
             }else {
                 enemy.setDef(enemy.getDef() - this.getSkills().get(getIdxAction).getDamage());
                 if (this.getHp() <= 0){
-                    if (enemy instanceof Wizard || enemy instanceof Dwarf){
-                        enemy.setAction(Constant.WizardConstant.DEAD);
-                    }else if (enemy instanceof Samurai){
-                        enemy.setAction(Constant.SamuraiConstant.DEAD);
-                    }
-                    game.getPlaying().setGameOver(1);
+                    enemy.setDead(true);
                 }
             }
         } else if (enemy.getHp() > 0) {
             if ((enemy.getHp() - this.getSkills().get(getIdxAction).getDamage()) < 0){
                 enemy.setHp(0);
-                System.out.println(this.getSkills().get(getIdxAction).getDamage());
-                if (enemy instanceof Wizard || enemy instanceof Dwarf){
-                    enemy.setAction(Constant.WizardConstant.DEAD);
-                }else if (enemy instanceof Samurai){
-                    enemy.setAction(Constant.SamuraiConstant.DEAD);
-                }
-                game.getPlaying().setGameOver(1);
+                enemy.setDead(true);
 
             }else {
                 enemy.setHp(enemy.getHp() - this.getSkills().get(getIdxAction).getDamage());
                 if (this.getHp() <= 0){
-                    if (enemy instanceof Wizard || enemy instanceof Dwarf){
-                        enemy.setAction(Constant.WizardConstant.DEAD);
-                    }else if (enemy instanceof Samurai){
-                        enemy.setAction(Constant.SamuraiConstant.DEAD);
-                    }
-                    game.getPlaying().setGameOver(1);
+                    enemy.setDead(true);
                 }
             }
         } else if(enemy.getHp() <= 0) {
-            if (enemy instanceof Wizard || enemy instanceof Dwarf){
-                enemy.setAction(Constant.WizardConstant.DEAD);
-            }else if (enemy instanceof Samurai){
-                enemy.setAction(Constant.SamuraiConstant.DEAD);
-            }
-            game.getPlaying().setGameOver(1);
+            enemy.setDead(true);
         }
     }
 
@@ -138,6 +108,18 @@ public abstract class Entity {
     public abstract void setAttack1(boolean attack1);
 
     public abstract void setBasic(boolean basic);
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
 
     public abstract boolean isAttack3();
     public void setAction(int action) {

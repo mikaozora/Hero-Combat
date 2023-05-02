@@ -175,6 +175,7 @@ public class Playing extends States implements Statemethods {
 
     @Override
     public void update() {
+//        System.out.println(gameOver);
         if (this.gameOver == -1) {
             if (!this.pause) {
                 this.player1.update();
@@ -562,9 +563,11 @@ public class Playing extends States implements Statemethods {
         this.player1.setDef(this.tempP1.getDef());
         this.player1.setHp(this.tempP1.getHp());
         this.player1.setAtk(this.tempP1.getAtk());
+        this.player1.setX(this.tempP1.getX());
         this.player2.setDef(this.tempP2.getDef());
         this.player2.setHp(this.tempP2.getHp());
         this.player2.setAtk(this.tempP2.getAtk());
+        this.player2.setX(this.tempP2.getX());
     }
 
     public void setPause(boolean pause) {

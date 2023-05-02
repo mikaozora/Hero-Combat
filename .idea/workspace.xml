@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="ca0185b9-e3e9-41c3-8b85-b20e4e490a01" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Dwarf.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Entity.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Samurai.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/entities/Wizard.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Hero Combat/gamestates/Playing.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Dwarf.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Dwarf.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Samurai.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Samurai.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/entities/Wizard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entities/Wizard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/gamestates/Playing.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamestates/Playing.java" afterDir="false" />
