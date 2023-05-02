@@ -8,11 +8,13 @@ import entities.KingGarden;
 import entities.Samurai;
 import entities.Skill;
 import entities.Wizard;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
+
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
 import main.Game;
@@ -20,7 +22,7 @@ import ui.GameoverOverlay;
 import ui.PauseOverlay;
 import ui.SkillButton;
 import utils.Constant;
-
+import java.awt.font.GlyphVector;
 public class Playing extends States implements Statemethods {
     private Entity player1;
     private Entity player2;
@@ -177,21 +179,10 @@ public class Playing extends States implements Statemethods {
             if (!this.pause) {
                 this.player1.update();
                 this.player2.update();
-                SkillButton[] var1 = this.skillButtonsP1;
-                int var2 = var1.length;
-
-                int var3;
-                SkillButton sb;
-                for(var3 = 0; var3 < var2; ++var3) {
-                    sb = var1[var3];
+                for(SkillButton sb:skillButtonsP1){
                     sb.update();
                 }
-
-                var1 = this.skillButtonsP2;
-                var2 = var1.length;
-
-                for(var3 = 0; var3 < var2; ++var3) {
-                    sb = var1[var3];
+                for(SkillButton sb:skillButtonsP2){
                     sb.update();
                 }
             } else {
@@ -214,21 +205,11 @@ public class Playing extends States implements Statemethods {
         this.player1.render(g2);
         this.player2.render(g2);
         this.drawDetails(g2);
-        SkillButton[] var2 = this.skillButtonsP1;
-        int var3 = var2.length;
 
-        int var4;
-        SkillButton sb;
-        for(var4 = 0; var4 < var3; ++var4) {
-            sb = var2[var4];
+        for(SkillButton sb:skillButtonsP1){
             sb.draw(g2);
         }
-
-        var2 = this.skillButtonsP2;
-        var3 = var2.length;
-
-        for(var4 = 0; var4 < var3; ++var4) {
-            sb = var2[var4];
+        for(SkillButton sb:skillButtonsP2){
             sb.draw(g2);
         }
 
@@ -243,11 +224,47 @@ public class Playing extends States implements Statemethods {
 
     }
 
+    public void drawStringOutline(Graphics g, String s, int x, int y, Color c, Color cOutLine) {
+
+        if (c == null)
+            c = g.getColor();/* w ww  .j a v a  2 s .co m*/
+        if (cOutLine == null)
+            cOutLine = Color.black;
+        if (!(g instanceof Graphics2D)) {
+            g.drawString(s, x, y);
+            return;
+        }
+
+        Graphics2D g2 = (Graphics2D) g;
+        Color cb = g2.getColor();
+        Object aliasing = g2.getRenderingHint(RenderingHints.KEY_ANTIALIASING);
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        AffineTransform t = g2.getTransform();
+        try {
+            Font f = g2.getFont();
+            FontMetrics fm = g2.getFontMetrics(f);
+            GlyphVector v = f.createGlyphVector(fm.getFontRenderContext(), s);
+            Shape s1 = v.getOutline();
+            g2.translate(x, y);
+            Stroke st = g2.getStroke();
+            g2.setStroke(new BasicStroke(1.6f, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL));
+            g.setColor(cOutLine);
+            g2.draw(s1);
+            g2.setStroke(st);
+            g2.setColor(c);
+            //          g2.translate(-0.3,-0.3);
+            g2.fill(s1);
+        } finally {
+            g2.setTransform(t);
+        }
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, aliasing);
+        g2.setColor(cb);
+    }
     public void drawTurn(Graphics2D g2) {
-        g2.setFont(new Font("Plus Jakarta Sans", 1, 20));
-        int var10001 = this.turn;
-        g2.drawString("" + var10001, 650, 40);
-        g2.drawString(this.p1Turn ? "P1 Turn" : "P2 Turn", 700, 100);
+        g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 40));
+        drawStringOutline(g2, String.format("%02d", turn), 678, 50, Color.WHITE, Color.BLACK);
+        g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 26));
+        drawStringOutline(g2, (p1Turn ? "Player1 Turn" : "Player2 Turn"), 620, 100, Color.WHITE, Color.BLACK);
     }
 
     public void drawDetails(Graphics2D g2) {
@@ -316,39 +333,23 @@ public class Playing extends States implements Statemethods {
     }
 
     public void skillPressP1(MouseEvent e) {
-        SkillButton[] var2 = this.skillButtonsP1;
-        int var3 = var2.length;
-
-        for(int var4 = 0; var4 < var3; ++var4) {
-            SkillButton sb = var2[var4];
-            if (this.isInSb(sb, e)) {
+        for(SkillButton sb : skillButtonsP1){
+            if(isInSb(sb, e)){
                 sb.setMousePressed(true);
-                break;
             }
         }
-
     }
 
     public void skillPressP2(MouseEvent e) {
-        SkillButton[] var2 = this.skillButtonsP2;
-        int var3 = var2.length;
-
-        for(int var4 = 0; var4 < var3; ++var4) {
-            SkillButton sb = var2[var4];
-            if (this.isInSb(sb, e)) {
+        for(SkillButton sb : skillButtonsP2){
+            if(isInSb(sb, e)){
                 sb.setMousePressed(true);
-                break;
             }
         }
-
     }
 
     public void skillReleaseP1(MouseEvent e) {
-        SkillButton[] var2 = this.skillButtonsP1;
-        int var3 = var2.length;
-
-        for(int var4 = 0; var4 < var3; ++var4) {
-            SkillButton sb = var2[var4];
+        for(SkillButton sb:skillButtonsP1) {
             if (!this.skillPressedP1[sb.getAction()] && this.isInSb(sb, e)) {
                 if (sb.isMousePressed()) {
                     sb.applyAction();
@@ -356,41 +357,6 @@ public class Playing extends States implements Statemethods {
                     if (sb.getAction() != 0) {
                         this.skillPressedP1[sb.getAction()] = true;
                     }
-
-//                    if (p1 == PlayerStates.SAMURAI && sb.getAction() == 3){
-//                        player1.setHp(player1.getHp() + 90);
-//                    } else if (p1 == PlayerStates.DWARF && sb.getAction() == 3) {
-//                        player1.setDef(player1.getDef() + 90);
-//                    }else {
-//                        if (player2.getDef() > 0) {
-//                            if ((player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
-//                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
-//                                player2.setHp(player2.getHp() + player2.getDef());
-//                                player2.setDef(0);
-//                                if (player2.getHp() <= 0){
-//                                    gameOver = 0;
-//                                }
-//                            }else {
-//                                player2.setDef(player2.getDef() - player1.getSkills().get(sb.getAction()).getDamage());
-//                                if (player2.getHp() <= 0){
-//                                    gameOver = 0;
-//                                }
-//                            }
-//                        } else if (player2.getHp() > 0) {
-//                            if ((player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage()) < 0){
-//                                player2.setHp(0);
-//                                gameOver = 0;
-//                            }else {
-//                                player2.setHp(player2.getHp() - player1.getSkills().get(sb.getAction()).getDamage());
-//                                if (player2.getHp() <= 0){
-//                                    gameOver = 0;
-//                                }
-//                            }
-//                        } else if(player2.getHp() <= 0) {
-//                            gameOver = 0;
-//                        }
-//                    }
-
                     this.p1Turn = false;
                     this.p2Turn = true;
                 }
@@ -404,11 +370,7 @@ public class Playing extends States implements Statemethods {
     }
 
     public void skillReleaseP2(MouseEvent e) {
-        SkillButton[] var2 = this.skillButtonsP2;
-        int var3 = var2.length;
-
-        for(int var4 = 0; var4 < var3; ++var4) {
-            SkillButton sb = var2[var4];
+        for(SkillButton sb:skillButtonsP2) {
             if (!this.skillPressedP2[sb.getAction()] && this.isInSb(sb, e)) {
                 if (sb.isMousePressed()) {
                     sb.applyAction();
@@ -416,104 +378,6 @@ public class Playing extends States implements Statemethods {
                     if (sb.getAction() != 0) {
                         this.skillPressedP2[sb.getAction()] = true;
                     }
-
-//                    try {
-//                        Thread.sleep(3000);
-//                    } catch (InterruptedException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-
-//                    if (p2 == PlayerStates.SAMURAI && sb.getAction() == 3){
-//                        player2.setHp(player2.getHp() + 90);
-//                    } else if (p2 == PlayerStates.DWARF && sb.getAction() == 3) {
-//                        player2.setDef(player2.getDef() + 90);
-//                    }else {
-//                        if (player1.getDef() > 0) {
-//                            if ((player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
-//                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
-//                                player1.setHp(player1.getHp() + player1.getDef());
-//                                player1.setDef(0);
-//                                if (player2.getHp() <= 0){
-//                                    if (player1 instanceof Wizard || player1 instanceof Dwarf){
-//                                        player1.setAction(Constant.WizardConstant.DEAD);
-//                                    }else if (player1 instanceof Samurai){
-//                                        player1.setAction(Constant.SamuraiConstant.DEAD);
-//                                    }
-//
-//                                    gameOver = 1;
-//                                }
-//                            }else {
-//                                player1.setDef(player1.getDef() - player2.getSkills().get(sb.getAction()).getDamage());
-//                                if (player2.getHp() <= 0){
-//                                    if (player1 instanceof Wizard || player1 instanceof Dwarf){
-//                                        player1.setAction(Constant.WizardConstant.DEAD);
-//                                    }else if (player1 instanceof Samurai){
-//                                        player1.setAction(Constant.SamuraiConstant.DEAD);
-//                                    }
-//
-////                                    while (k != 2000){
-////                                        if (k == 1999) {
-//                                            gameOver = 1;
-////                                            break;
-////                                        }
-////                                        k++;
-////                                    }
-//
-//                                }
-//                            }
-//                        } else if (player1.getHp() > 0) {
-//                            if ((player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage()) < 0){
-//                                player1.setHp(0);
-//                                if (player1 instanceof Wizard || player1 instanceof Dwarf){
-//                                    player1.setAction(Constant.WizardConstant.DEAD);
-//                                }else if (player1 instanceof Samurai){
-//                                    player1.setAction(Constant.SamuraiConstant.DEAD);
-//                                }
-//
-////                                while (k != 2000){
-////                                    if (k == 1999) {
-//                                        gameOver = 1;
-////                                        break;
-////                                    }
-////                                    k++;
-////                                }
-//
-//                            }else {
-//                                player1.setHp(player1.getHp() - player2.getSkills().get(sb.getAction()).getDamage());
-//                                if (player2.getHp() <= 0){
-//                                    if (player1 instanceof Wizard || player1 instanceof Dwarf){
-//                                        player1.setAction(Constant.WizardConstant.DEAD);
-//                                    }else if (player1 instanceof Samurai){
-//                                        player1.setAction(Constant.SamuraiConstant.DEAD);
-//                                    }
-//
-////                                    while (k != 2000){
-////                                        if (k == 1999) {
-//                                            gameOver = 1;
-////                                            break;
-////                                        }
-////                                        k++;
-////                                    }
-//
-//                                }
-//                            }
-//                        } else if(player1.getHp() <= 0) {
-//
-//                            if (player1 instanceof Wizard || player1 instanceof Dwarf){
-//                                player1.setAction(Constant.WizardConstant.DEAD);
-//                            }else if (player1 instanceof Samurai){
-//                                player1.setAction(Constant.SamuraiConstant.DEAD);
-//                            }
-//
-////                            while (k != 2000){
-////                                if (k == 1999) {
-//                                    gameOver = 1;
-////                                    break;
-////                                }
-////                                k++;
-////                            }
-//                        }
-//                    }
                     p1Turn = true;
                     p2Turn = false;
                     turn++;
@@ -529,24 +393,12 @@ public class Playing extends States implements Statemethods {
     }
 
     public void resetButton() {
-        SkillButton[] var1 = this.skillButtonsP1;
-        int var2 = var1.length;
-
-        int var3;
-        SkillButton sb;
-        for(var3 = 0; var3 < var2; ++var3) {
-            sb = var1[var3];
+        for(SkillButton sb:skillButtonsP1){
             sb.resetBool();
         }
-
-        var1 = this.skillButtonsP2;
-        var2 = var1.length;
-
-        for(var3 = 0; var3 < var2; ++var3) {
-            sb = var1[var3];
+        for(SkillButton sb:skillButtonsP2){
             sb.resetBool();
         }
-
     }
 
     public void cdProcess() {
@@ -695,22 +547,11 @@ public class Playing extends States implements Statemethods {
     }
 
     public void resetSkillBtn() {
-        SkillButton[] var1 = this.skillButtonsP1;
-        int var2 = var1.length;
-
-        int var3;
-        SkillButton skillButton;
-        for(var3 = 0; var3 < var2; ++var3) {
-            skillButton = var1[var3];
+        for (SkillButton skillButton : skillButtonsP1) {
             skillButton.setMouseReleased(false);
             skillButton.setMousePressed(false);
         }
-
-        var1 = this.skillButtonsP2;
-        var2 = var1.length;
-
-        for(var3 = 0; var3 < var2; ++var3) {
-            skillButton = var1[var3];
+        for (SkillButton skillButton : skillButtonsP2) {
             skillButton.setMouseReleased(false);
             skillButton.setMousePressed(false);
         }
@@ -739,5 +580,29 @@ public class Playing extends States implements Statemethods {
     }
     public void  setGameOver(int gameOver){
         this.gameOver = gameOver;
+    }
+
+    public boolean isP1Turn() {
+        return p1Turn;
+    }
+
+    public void setP1Turn(boolean p1Turn) {
+        this.p1Turn = p1Turn;
+    }
+
+    public boolean isP2Turn() {
+        return p2Turn;
+    }
+
+    public void setP2Turn(boolean p2Turn) {
+        this.p2Turn = p2Turn;
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public void setTurn(int turn) {
+        this.turn = turn;
     }
 }

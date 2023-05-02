@@ -87,6 +87,7 @@ public class Samurai extends Entity{
                 x+=sumX;
                 needStop = 1;
             }
+
         }else if (player == 2){
             if (atk == ATT3){
                 action = atk;
