@@ -8,6 +8,7 @@ import utils.LoadSave;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.sql.SQLOutput;
 
 import static utils.Constant.SamuraiConstant.*;
 import static utils.Constant.WizardConstant.HITTED;
@@ -174,6 +175,14 @@ public class Samurai extends Entity{
             aniIndex++;
             if (aniIndex >= getSpriteAmount(action)) {
                 aniIndex = 0;
+                if(action == DEAD){
+                    if(this.player == 1){
+                        game.getPlaying().setGameOver(1);
+                    }else if(this.player == 2){
+                        game.getPlaying().setGameOver(0);
+                    }
+                    dead = false;
+                }
                 resetAction();
             }
         }
@@ -190,8 +199,9 @@ public class Samurai extends Entity{
             doSkill(ATT3, RUN);
         }else if(attacked){
             action = HITTED;
-        }
-        else {
+        }else if(dead){
+            action = DEAD;
+        } else {
             action = IDLE;
             doneInc = false;
         }
@@ -210,6 +220,7 @@ public class Samurai extends Entity{
         attack2 = false;
         basic = false;
         attacked = false;
+//        dead = false;
     }
     void initSkills(){
         skills.add(new Skill("Basic", 0, atk));

@@ -186,6 +186,14 @@ public class Wizard extends Entity {
             aniIndex++;
             if (aniIndex >= getSpriteAmount(action)) {
                 aniIndex = 0;
+                if (action == DEAD) {
+                    if (this.player == 1) {
+                        game.getPlaying().setGameOver(1);
+                    } else if (this.player == 2) {
+                        game.getPlaying().setGameOver(0);
+                    }
+                    dead = false;
+                }
                 resetAction();
             }
         }
@@ -204,6 +212,8 @@ public class Wizard extends Entity {
             doSkill(ATT3, RUN);
         } else if (attacked) {
             action = HITTED;
+        } else if (dead) {
+            action = DEAD;
         } else {
             action = IDLE;
         }
