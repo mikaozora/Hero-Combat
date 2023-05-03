@@ -17,12 +17,16 @@ import java.awt.font.TextLayout;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.util.Arrays;
+
 import main.Game;
 import ui.GameoverOverlay;
 import ui.PauseOverlay;
 import ui.SkillButton;
 import utils.Constant;
+import utils.LoadSave;
+
 import java.awt.font.GlyphVector;
+
 public class Playing extends States implements Statemethods {
     private Entity player1;
     private Entity player2;
@@ -54,6 +58,37 @@ public class Playing extends States implements Statemethods {
     private GameoverOverlay gameoverOverlay;
     private int gameOver = -1;
 
+    // status bar
+    private BufferedImage statusBarP1;
+    private BufferedImage statusBarP2;
+
+    private int statusBarWidth = 496;
+    private int statusBarHeight = 53;
+    private int statusBarX = 40;
+    private int statusBarY = 40;
+
+    private int healthBarWidth = 452;
+    private int healthBarHeight = 33;
+    private int healthBarXstart = 44;
+    private int healthBarYstart = 0;
+
+    private int armorBarWidth = 354;
+    private int armorBarHeight = 20;
+    private int armorBarXstart = 44;
+    private int armorBarYstart = 33;
+
+
+    private int maxHealth_p1;
+    private int maxHealth_p2;
+    private int healthWidth_p1 = healthBarWidth;
+    private int healthWidth_p2 = healthBarWidth;
+
+    private int maxArmor_p1;
+    private int maxArmor_p2;
+    private int armorWidth_p1 = armorBarWidth;
+    private int armorWidth_p2 = armorBarWidth;
+
+
     public Playing(Game game, PlayerStates p1, PlayerStates p2, ItemStates p1_item, ItemStates p2_item, MapStates map) {
         super(game);
         this.p1 = p1;
@@ -74,7 +109,7 @@ public class Playing extends States implements Statemethods {
         } else if (p1 == PlayerStates.SAMURAI) {
             player1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game);
             tempP1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game);
-        }else if(p1 == PlayerStates.DWARF){
+        } else if (p1 == PlayerStates.DWARF) {
             player1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game);
             tempP1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game);
         }
@@ -84,7 +119,7 @@ public class Playing extends States implements Statemethods {
         } else if (p2 == PlayerStates.SAMURAI) {
             player2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game);
             tempP2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game);
-        }else if(p2 == PlayerStates.DWARF){
+        } else if (p2 == PlayerStates.DWARF) {
             player2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game);
             tempP2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game);
         }
@@ -96,7 +131,7 @@ public class Playing extends States implements Statemethods {
             this.player1.setDef(this.player1.getDef() + 500);
             this.tempP1.setDef(this.tempP1.getDef() + 500);
         } else if (this.p1_item == ItemStates.SWORD) {
-            if (p1 == PlayerStates.DWARF){
+            if (p1 == PlayerStates.DWARF) {
                 player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
                 player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
                 player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
@@ -119,7 +154,7 @@ public class Playing extends States implements Statemethods {
             this.player2.setDef(this.player2.getDef() + 500);
             this.tempP2.setDef(this.tempP2.getDef() + 500);
         } else if (this.p2_item == ItemStates.SWORD) {
-            if (p2 == PlayerStates.DWARF){
+            if (p2 == PlayerStates.DWARF) {
                 player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
                 player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 500);
                 player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 500);
@@ -141,6 +176,10 @@ public class Playing extends States implements Statemethods {
         this.kingGarden = new KingGarden(0, 0);
         this.pauseOverlay = new PauseOverlay(this);
         this.gameoverOverlay = new GameoverOverlay(this);
+        this.maxHealth_p1 = player1.getHp();
+        this.maxHealth_p2 = player2.getHp();
+        this.maxArmor_p1 = player1.getDef();
+        this.maxArmor_p2 = player2.getDef();
     }
 
     private void loadSkill() {
@@ -152,16 +191,18 @@ public class Playing extends States implements Statemethods {
         this.skillButtonsP2[1] = new SkillButton(1251, 329, 1, this.player2, 2);
         this.skillButtonsP2[2] = new SkillButton(1251, 454, 2, this.player2, 1);
         this.skillButtonsP2[3] = new SkillButton(1251, 579, 3, this.player2, 0);
+        this.statusBarP1 = LoadSave.getSprite(LoadSave.STATUS_BAR);
+        this.statusBarP2 = LoadSave.getSprite(LoadSave.STATUS_BAR);
     }
 
     public void loadCd() {
         int i;
-        for(i = 0; i < this.cdP1.length; ++i) {
-            this.cdP1[i] = (Skill)this.player1.getSkills().get(i);
+        for (i = 0; i < this.cdP1.length; ++i) {
+            this.cdP1[i] = (Skill) this.player1.getSkills().get(i);
         }
 
-        for(i = 0; i < this.cdP2.length; ++i) {
-            this.cdP2[i] = (Skill)this.player2.getSkills().get(i);
+        for (i = 0; i < this.cdP2.length; ++i) {
+            this.cdP2[i] = (Skill) this.player2.getSkills().get(i);
         }
 
     }
@@ -176,14 +217,16 @@ public class Playing extends States implements Statemethods {
     @Override
     public void update() {
 //        System.out.println(gameOver);
+        updateHealthBar();
+        updateArmorBar();
         if (this.gameOver == -1) {
             if (!this.pause) {
                 this.player1.update();
                 this.player2.update();
-                for(SkillButton sb:skillButtonsP1){
+                for (SkillButton sb : skillButtonsP1) {
                     sb.update();
                 }
-                for(SkillButton sb:skillButtonsP2){
+                for (SkillButton sb : skillButtonsP2) {
                     sb.update();
                 }
             } else {
@@ -193,6 +236,16 @@ public class Playing extends States implements Statemethods {
             this.gameoverOverlay.update();
         }
 
+    }
+
+    private void updateHealthBar() {
+        healthWidth_p2 = (int) ((player2.getHp() / (float) maxHealth_p2) * healthBarWidth);
+        healthWidth_p1 = (int) ((player1.getHp() / (float) maxHealth_p1) * healthBarWidth);
+    }
+
+    private void updateArmorBar() {
+        armorWidth_p2 = (int) ((player2.getDef() / (float) maxArmor_p2) * armorBarWidth);
+        armorWidth_p1 = (int) ((player1.getDef() / (float) maxArmor_p1) * armorBarWidth);
     }
 
     @Override
@@ -207,10 +260,10 @@ public class Playing extends States implements Statemethods {
         this.player2.render(g2);
         this.drawDetails(g2);
 
-        for(SkillButton sb:skillButtonsP1){
+        for (SkillButton sb : skillButtonsP1) {
             sb.draw(g2);
         }
-        for(SkillButton sb:skillButtonsP2){
+        for (SkillButton sb : skillButtonsP2) {
             sb.draw(g2);
         }
 
@@ -222,6 +275,25 @@ public class Playing extends States implements Statemethods {
         if (this.gameOver != -1) {
             this.gameoverOverlay.draw(g2);
         }
+        g2.drawImage(statusBarP1, statusBarX, statusBarY, statusBarWidth, statusBarHeight, null);
+        g2.drawImage(statusBarP2, statusBarX + 1320, statusBarY, statusBarWidth * -1, statusBarHeight, null);
+
+        g2.setColor(Color.RED);
+        g2.fillRect(healthBarXstart + statusBarX, healthBarYstart + statusBarY, healthWidth_p1, healthBarHeight);
+        g2.create();
+        g2.setColor(Color.RED);
+        g2.translate(1360, 0);
+        g2.scale(-1, 1);
+        g2.fillRect(healthBarXstart, healthBarYstart + statusBarY, healthWidth_p2, healthBarHeight);
+
+        g2.setColor(Color.blue);
+        g2.fillRect(armorBarXstart + statusBarX - 40, armorBarYstart + statusBarY, armorWidth_p2, armorBarHeight);
+        g2.create();
+        g2.setColor(Color.blue);
+        g2.translate(1320, 0);
+        g2.scale(-1, 1);
+        g2.fillRect(armorBarXstart, armorBarYstart + statusBarY, armorWidth_p1, armorBarHeight);
+
 
     }
 
@@ -261,6 +333,7 @@ public class Playing extends States implements Statemethods {
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, aliasing);
         g2.setColor(cb);
     }
+
     public void drawTurn(Graphics2D g2) {
         g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 40));
         drawStringOutline(g2, String.format("%02d", turn), 678, 50, Color.WHITE, Color.BLACK);
@@ -334,23 +407,23 @@ public class Playing extends States implements Statemethods {
     }
 
     public void skillPressP1(MouseEvent e) {
-        for(SkillButton sb : skillButtonsP1){
-            if(isInSb(sb, e)){
+        for (SkillButton sb : skillButtonsP1) {
+            if (isInSb(sb, e)) {
                 sb.setMousePressed(true);
             }
         }
     }
 
     public void skillPressP2(MouseEvent e) {
-        for(SkillButton sb : skillButtonsP2){
-            if(isInSb(sb, e)){
+        for (SkillButton sb : skillButtonsP2) {
+            if (isInSb(sb, e)) {
                 sb.setMousePressed(true);
             }
         }
     }
 
     public void skillReleaseP1(MouseEvent e) {
-        for(SkillButton sb:skillButtonsP1) {
+        for (SkillButton sb : skillButtonsP1) {
             if (!this.skillPressedP1[sb.getAction()] && this.isInSb(sb, e)) {
                 if (sb.isMousePressed()) {
                     sb.applyAction();
@@ -371,7 +444,7 @@ public class Playing extends States implements Statemethods {
     }
 
     public void skillReleaseP2(MouseEvent e) {
-        for(SkillButton sb:skillButtonsP2) {
+        for (SkillButton sb : skillButtonsP2) {
             if (!this.skillPressedP2[sb.getAction()] && this.isInSb(sb, e)) {
                 if (sb.isMousePressed()) {
                     sb.applyAction();
@@ -394,10 +467,10 @@ public class Playing extends States implements Statemethods {
     }
 
     public void resetButton() {
-        for(SkillButton sb:skillButtonsP1){
+        for (SkillButton sb : skillButtonsP1) {
             sb.resetBool();
         }
-        for(SkillButton sb:skillButtonsP2){
+        for (SkillButton sb : skillButtonsP2) {
             sb.resetBool();
         }
     }
@@ -537,11 +610,11 @@ public class Playing extends States implements Statemethods {
 
     public void resetCd() {
         int i;
-        for(i = 0; i < this.cdP1.length; ++i) {
+        for (i = 0; i < this.cdP1.length; ++i) {
             this.cdP1[i].setCd(i);
         }
 
-        for(i = 0; i < this.cdP2.length; ++i) {
+        for (i = 0; i < this.cdP2.length; ++i) {
             this.cdP2[i].setCd(i);
         }
 
@@ -581,7 +654,8 @@ public class Playing extends States implements Statemethods {
     public int getGameOver() {
         return this.gameOver;
     }
-    public void  setGameOver(int gameOver){
+
+    public void setGameOver(int gameOver) {
         this.gameOver = gameOver;
     }
 

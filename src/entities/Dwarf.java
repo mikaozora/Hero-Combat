@@ -25,6 +25,9 @@ public class Dwarf extends Entity{
         loadAnimations();
     }
 
+
+
+
     @Override
     protected void doSkill(int atk, int run) {
 
