@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 import static utils.Constant.*;
@@ -39,6 +40,7 @@ public abstract class Entity {
         this.game = game;
     }
 
+
     protected void checkEnemy(){
         if (enemy.getDef() > 0) {
             if ((enemy.getDef() - this.getSkills().get(getIdxAction).getDamage()) < 0){
@@ -49,6 +51,7 @@ public abstract class Entity {
                 enemy.setDef(enemy.getDef() - this.getSkills().get(getIdxAction).getDamage());
                 if (this.getHp() <= 0){
                     enemy.setDead(true);
+
                 }
             }
         } else if (enemy.getHp() > 0) {
