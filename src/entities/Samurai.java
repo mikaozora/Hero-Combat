@@ -1,6 +1,7 @@
 package entities;
 
 import audio.AudioPlayer;
+import gamestates.ItemStates;
 import gamestates.PlayerStates;
 import main.Game;
 import utils.Constant;
@@ -19,8 +20,8 @@ public class Samurai extends Entity{
 //    private int action = DEAD;
     private int width, height;
     private boolean attack3 = false;
-    public Samurai(int x, int y, int width, int height, int player, Game game) {
-        super(x, y, HP, ATK, DEF, player, game);
+    public Samurai(int x, int y, int width, int height, int player, Game game, ItemStates item) {
+        super(x, y, HP, ATK, DEF, player, game, item);
         initSkills();
         this.width = width;
         this.height = height;
@@ -39,7 +40,28 @@ public class Samurai extends Entity{
                     }
                 }
                 if (!doneInc){
-                    this.setHp(this.getHp() + 90);
+
+                    if (this.item == ItemStates.SHIELD){
+                        if((this.getHp() + 90) > HP && (this.getDef() + 90) > (DEF+500)){
+                            this.setDef(DEF+500);
+                        }
+                        else if ((this.getHp() + 90) > HP && (this.getDef() + 90) <= (DEF+500)){
+                            this.setDef(this.getDef() + (this.getHp() + 90 - HP));
+                            this.setHp(HP);
+                        }else if(this.getHp() + 90 <= HP){
+                            this.setHp(this.getHp() + 90);
+                        }
+                    }else {
+                        if((this.getHp() + 90) > HP && (this.getDef() + 90) > (DEF)){
+                            this.setDef(DEF);
+                        }
+                        else if ((this.getHp() + 90) > HP && (this.getDef() + 90) <= DEF){
+                            this.setDef(this.getDef() + (this.getHp() + 90 - HP));
+                            this.setHp(HP);
+                        }else if(this.getHp() + 90 <= HP){
+                            this.setHp(this.getHp() + 90);
+                        }
+                    }
                     doneInc = true;
                 }
             }
@@ -99,7 +121,28 @@ public class Samurai extends Entity{
                     }
                 }
                 if (!doneInc){
-                    this.setHp(this.getHp() + 90);
+                    if (this.item == ItemStates.SHIELD){
+                        if((this.getHp() + 90) > HP && (this.getDef() + 90) > (DEF+500)){
+                            this.setDef(DEF+500);
+                        }
+                        else if ((this.getHp() + 90) > HP && (this.getDef() + 90) <= (DEF+500)){
+                            this.setDef(this.getDef() + (this.getHp() + 90 - HP));
+                            this.setHp(HP);
+                        }
+                        else if(this.getHp() + 900 <= HP){
+                            this.setHp(this.getHp() + 900);
+                        }
+                    }else {
+                        if((this.getHp() + 90) > HP && (this.getDef() + 90) > (DEF)){
+                            this.setDef(DEF);
+                        }
+                        else if ((this.getHp() + 90) > HP && (this.getDef() + 90) <= DEF){
+                            this.setDef(this.getDef() + (this.getHp() + 90 - HP));
+                            this.setHp(HP);
+                        }else if(this.getHp() + 90 <= HP){
+                            this.setHp(this.getHp() + 90);
+                        }
+                    }
                     doneInc = true;
                 }
             }

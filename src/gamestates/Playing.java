@@ -104,72 +104,72 @@ public class Playing extends States implements Statemethods {
 
     private void initClasses() {
         if (p1 == PlayerStates.WIZARD) {
-            player1 = new Wizard(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 1, game);
-            tempP1 = new Wizard(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 1, game);
+            player1 = new Wizard(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 1, game, p1_item);
+            tempP1 = new Wizard(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 1, game, p1_item);
         } else if (p1 == PlayerStates.SAMURAI) {
-            player1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game);
-            tempP1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game);
+            player1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game, p1_item);
+            tempP1 = new Samurai(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 1, game, p1_item);
         } else if (p1 == PlayerStates.DWARF) {
-            player1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game);
-            tempP1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game);
+            player1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game, p1_item);
+            tempP1 = new Dwarf(Constant.PlayerPosition.xPosP1, Constant.PlayerPosition.yPosP1, Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 1, game, p1_item);
         }
         if (p2 == PlayerStates.WIZARD) {
-            player2 = new Wizard(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 2, game);
-            tempP2 = new Wizard(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 2, game);
+            player2 = new Wizard(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 2, game, p2_item);
+            tempP2 = new Wizard(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.WizardConstant.WIDTH * scale, Constant.WizardConstant.HEIGHT * scale, 2, game, p2_item);
         } else if (p2 == PlayerStates.SAMURAI) {
-            player2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game);
-            tempP2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game);
+            player2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game, p2_item);
+            tempP2 = new Samurai(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.SamuraiConstant.WIDTH * scale, Constant.SamuraiConstant.HEIGHT * scale, 2, game, p2_item);
         } else if (p2 == PlayerStates.DWARF) {
-            player2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game);
-            tempP2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game);
+            player2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game, p2_item);
+            tempP2 = new Dwarf(Constant.PlayerPosition.xPosP2, Constant.PlayerPosition.yPosP2, -Constant.DwarfConstant.WIDTH * scale, Constant.DwarfConstant.HEIGHT * scale, 2, game, p2_item);
         }
 
         player2.enemy = player1;
         player1.enemy = player2;
 
         if (this.p1_item == ItemStates.SHIELD) {
-            this.player1.setDef(this.player1.getDef() + 500);
-            this.tempP1.setDef(this.tempP1.getDef() + 500);
+            this.player1.setDef(this.player1.getDef() + 80);
+            this.tempP1.setDef(this.tempP1.getDef() + 80);
         } else if (this.p1_item == ItemStates.SWORD) {
             if (p1 == PlayerStates.DWARF) {
-                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
-                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
-                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 80);
+                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 80);
+                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 80);
             } else if (p1 == PlayerStates.SAMURAI) {
-                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
-                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
-                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 80);
+                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 80);
+                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 80);
             } else if (p1 == PlayerStates.WIZARD) {
-                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
-                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
-                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
-                player1.getSkills().get(3).setDamage(player1.getSkills().get(3).getDamage() + 500);
+                player1.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 80);
+                player1.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 80);
+                player1.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 80);
+                player1.getSkills().get(3).setDamage(player1.getSkills().get(3).getDamage() + 80);
             }
 
-            this.player1.setAtk(this.player1.getAtk() + 500);
-            this.tempP1.setDef(this.tempP1.getDef() + 500);
+            this.player1.setAtk(this.player1.getAtk() + 80);
+            this.tempP1.setDef(this.tempP1.getDef() + 80);
         }
 
         if (this.p2_item == ItemStates.SHIELD) {
-            this.player2.setDef(this.player2.getDef() + 500);
-            this.tempP2.setDef(this.tempP2.getDef() + 500);
+            this.player2.setDef(this.player2.getDef() + 80);
+            this.tempP2.setDef(this.tempP2.getDef() + 80);
         } else if (this.p2_item == ItemStates.SWORD) {
             if (p2 == PlayerStates.DWARF) {
-                player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
-                player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 500);
-                player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 500);
+                player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 80);
+                player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 80);
+                player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 80);
             } else if (p2 == PlayerStates.SAMURAI) {
-                player2.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 500);
-                player2.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 500);
-                player2.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 500);
+                player2.getSkills().get(0).setDamage(player1.getSkills().get(0).getDamage() + 80);
+                player2.getSkills().get(1).setDamage(player1.getSkills().get(1).getDamage() + 80);
+                player2.getSkills().get(2).setDamage(player1.getSkills().get(2).getDamage() + 80);
             } else if (p2 == PlayerStates.WIZARD) {
-                player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 500);
-                player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 500);
-                player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 500);
-                player2.getSkills().get(3).setDamage(player2.getSkills().get(3).getDamage() + 500);
+                player2.getSkills().get(0).setDamage(player2.getSkills().get(0).getDamage() + 80);
+                player2.getSkills().get(1).setDamage(player2.getSkills().get(1).getDamage() + 80);
+                player2.getSkills().get(2).setDamage(player2.getSkills().get(2).getDamage() + 80);
+                player2.getSkills().get(3).setDamage(player2.getSkills().get(3).getDamage() + 80);
             }
-            this.player2.setAtk(this.player2.getAtk() + 500);
-            this.tempP2.setAtk(this.tempP2.getAtk() + 500);
+            this.player2.setAtk(this.player2.getAtk() + 80);
+            this.tempP2.setAtk(this.tempP2.getAtk() + 80);
         }
 
         this.almo = new AlmoGarden(0, 0);
@@ -343,14 +343,14 @@ public class Playing extends States implements Statemethods {
 
     public void drawDetails(Graphics2D g2) {
         g2.setColor(Color.white);
-        g2.drawString("Hp:" + this.player1.getHp(), 10, 50);
-        g2.drawString("ATK:" + this.player1.getAtk(), 60, 50);
-        g2.drawString("DEF:" + this.player1.getDef(), 110, 50);
-        g2.drawString("ITEM:" + String.valueOf(this.p1_item), 200, 50);
-        g2.drawString("Hp:" + this.player2.getHp(), 1000, 100);
-        g2.drawString("ATK:" + this.player2.getAtk(), 1050, 100);
-        g2.drawString("DEF:" + this.player2.getDef(), 1100, 100);
-        g2.drawString("ITEM:" + String.valueOf(this.p2_item), 1150, 100);
+//        g2.drawString("Hp:" + this.player1.getHp(), 10, 50);
+//        g2.drawString("ATK:" + this.player1.getAtk(), 60, 50);
+//        g2.drawString("DEF:" + this.player1.getDef(), 110, 50);
+//        g2.drawString("ITEM:" + String.valueOf(this.p1_item), 200, 50);
+//        g2.drawString("Hp:" + this.player2.getHp(), 1000, 100);
+//        g2.drawString("ATK:" + this.player2.getAtk(), 1050, 100);
+//        g2.drawString("DEF:" + this.player2.getDef(), 1100, 100);
+//        g2.drawString("ITEM:" + String.valueOf(this.p2_item), 1150, 100);
     }
 
     @Override

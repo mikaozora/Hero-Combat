@@ -12,9 +12,9 @@ public class Constant {
         public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
-        public static final int HP = 500;
-        public static final int ATK = 50;
-        public static final int DEF = 50;
+        public static final int HP = 4000;
+        public static final int ATK = 100;
+        public static final int DEF = 100;
 
         public static int getSpriteAmount(int action){
             if(action == IDLE || action == HITTED){
@@ -44,9 +44,9 @@ public class Constant {
         public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
-        public static final int HP = 400;
-        public static final int ATK = 60;
-        public static final int DEF = 50;
+        public static final int HP = 4500;
+        public static final int ATK = 100;
+        public static final int DEF = 100;
 
         public static int getSpriteAmount(int action){
             if(action == BASIC || action == ATT2){
@@ -77,9 +77,9 @@ public class Constant {
         public static final int HITTED = 7;
         public static final int WIDTH = 128;
         public static final int HEIGHT = 128;
-        public static final int HP = 600;
-        public static final int ATK = 40;
-        public static final int DEF = 50;
+        public static final int HP = 5000;
+        public static final int ATK = 30;
+        public static final int DEF = 100;
 
         public static int getSpriteAmount(int action){
             if(action == BASIC || action == ATT2 || action == ATT1 || action == DEAD){

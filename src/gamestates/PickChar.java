@@ -57,9 +57,9 @@ public class PickChar extends States implements Statemethods {
     }
 
     private void initClasses(){
-        wizard = new Wizard(0, 0, WizardConstant.WIDTH, WizardConstant.HEIGHT, -1, game);
-        samurai = new Samurai(0, 0, SamuraiConstant.WIDTH, SamuraiConstant.HEIGHT, -1, game);
-        dwarf = new Dwarf(0, 0, DwarfConstant.WIDTH, DwarfConstant.HEIGHT, -1, game);
+        wizard = new Wizard(0, 0, WizardConstant.WIDTH, WizardConstant.HEIGHT, -1, game, null);
+        samurai = new Samurai(0, 0, SamuraiConstant.WIDTH, SamuraiConstant.HEIGHT, -1, game, null);
+        dwarf = new Dwarf(0, 0, DwarfConstant.WIDTH, DwarfConstant.HEIGHT, -1, game, null);
     }
     @Override
     public void draw(Graphics2D g2) {
