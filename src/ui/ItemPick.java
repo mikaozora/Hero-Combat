@@ -52,7 +52,7 @@ public class ItemPick {
         g2.setColor(Color.white);
         g2.drawString("Shield of Justice", 20+MARGIN, 515);
         g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 14));
-        g2.drawString("DEF:"+500, 20+MARGIN, 540);
+        g2.drawString("DEF:"+80, 20+MARGIN, 540);
     }
 
     private void drawSword(Graphics2D g2) {
@@ -60,7 +60,7 @@ public class ItemPick {
         g2.setColor(Color.white);
         g2.drawString("King Edward Sword", 20+MARGIN*2, 515);
         g2.setFont(new Font("Plus Jakarta Sans", Font.BOLD, 14));
-        g2.drawString("ATK:"+500, 20+MARGIN*2, 540);
+        g2.drawString("ATK:"+80, 20+MARGIN*2, 540);
     }
 
     public void update(){

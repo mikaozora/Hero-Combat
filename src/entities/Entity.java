@@ -29,7 +29,7 @@ public abstract class Entity {
     public Entity enemy;
     public boolean attacked =  false;
     protected Game game;
-    public Entity(int x, int y, int hp, int atk, int def, int player, Game game) {
+    public Entity(int x, int y, int hp, int atk, int def, int player, Game game, ItemStates item) {
         this.x = x;
         this.y = y;
         this.hp = hp;
@@ -38,6 +38,7 @@ public abstract class Entity {
         skills = new ArrayList<>();
         this.player = player;
         this.game = game;
+        this.item = item;
     }
 
 
@@ -49,7 +50,7 @@ public abstract class Entity {
                 enemy.setDef(0);
             }else {
                 enemy.setDef(enemy.getDef() - this.getSkills().get(getIdxAction).getDamage());
-                if (this.getHp() <= 0){
+                if (enemy.getHp() <= 0){
                     enemy.setDead(true);
 
                 }
@@ -61,7 +62,7 @@ public abstract class Entity {
 
             }else {
                 enemy.setHp(enemy.getHp() - this.getSkills().get(getIdxAction).getDamage());
-                if (this.getHp() <= 0){
+                if (enemy.getHp() <= 0){
                     enemy.setDead(true);
                 }
             }

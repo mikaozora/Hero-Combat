@@ -1,6 +1,7 @@
 package entities;
 
 import audio.AudioPlayer;
+import gamestates.ItemStates;
 import gamestates.PlayerStates;
 import gamestates.Playing;
 import main.Game;
@@ -20,8 +21,8 @@ public class Wizard extends Entity {
     //    private int action = IDLE;
     private int width, height;
 
-    public Wizard(int x, int y, int width, int height, int player, Game game) {
-        super(x, y, HP, ATK, DEF, player, game);
+    public Wizard(int x, int y, int width, int height, int player, Game game, ItemStates item) {
+        super(x, y, HP, ATK, DEF, player, game, item);
         initSkills();
         this.width = width;
         this.height = height;
@@ -176,7 +177,7 @@ public class Wizard extends Entity {
         skills.add(new Skill("Basic", 0, atk));
         skills.add(new Skill("Prick", 1, atk + 50));
         skills.add(new Skill("Fireball", 2, atk + 70));
-        skills.add(new Skill("Fire jet", 3, atk + 90));
+        skills.add(new Skill("Fire jet", 3, atk + 150));
     }
 
     void updateAniTick() {

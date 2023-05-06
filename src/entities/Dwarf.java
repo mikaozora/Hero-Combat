@@ -1,6 +1,7 @@
 package entities;
 
 import audio.AudioPlayer;
+import gamestates.ItemStates;
 import main.Game;
 import utils.Constant;
 import utils.LoadSave;
@@ -17,8 +18,8 @@ public class Dwarf extends Entity{
     private int sumX = 5;
     private int width, height;
 
-    public Dwarf(int x, int y, int width, int height, int player, Game game) {
-        super(x, y, HP, ATK, DEF, player, game);
+    public Dwarf(int x, int y, int width, int height, int player, Game game, ItemStates item) {
+        super(x, y, HP, ATK, DEF, player, game, item);
         initSkills();
         this.width = width;
         this.height = height;
@@ -46,7 +47,21 @@ public class Dwarf extends Entity{
                     }
                 }
                 if (!doneInc){
-                    this.setDef(this.getDef() + 90);
+                    if (this.item == ItemStates.SHIELD){
+                        if (!((this.getDef() + 90) > (DEF+500))){
+                            this.setDef(this.getDef() + 90);
+                        }else {
+                            this.setDef(DEF+500);
+                        }
+
+                    }else{
+                        if (!((this.getDef() + 90) > DEF)){
+                            this.setDef(this.getDef() + 90);
+                        }else {
+                            this.setDef(DEF);
+                        }
+
+                    }
                     doneInc = true;
                 }
             }
@@ -95,7 +110,20 @@ public class Dwarf extends Entity{
                 }
 
                 if (!doneInc){
-                    this.setDef(this.getDef() + 90);
+                    if (this.item == ItemStates.SHIELD){
+                        if (!((this.getDef() + 90) > (DEF+500))){
+                            this.setDef(this.getDef() + 90);
+                        }else {
+                            this.setDef(DEF+500);
+                        }
+                    }else{
+                        if (!((this.getDef() + 90) > DEF)){
+                            this.setDef(this.getDef() + 90);
+                        }else {
+                            this.setDef(DEF);
+                        }
+                    }
+
                     doneInc = true;
                 }
             }
@@ -182,6 +210,9 @@ public class Dwarf extends Entity{
             doSkill(ATT2, RUN);
         } else if (attack3) {
             doSkill(ATT3, RUN);
+//            if (this.getDef() >= DEF){
+//                this.setDef(DEF);
+//            }
         }else if(attacked){
             action = HITTED;
         }else if(dead){
@@ -213,7 +244,7 @@ public class Dwarf extends Entity{
         skills.add(new Skill("Basic", 0, atk));
         skills.add(new Skill("Execute", 1, atk+50));
         skills.add(new Skill("Fury", 2, atk+70));
-        skills.add(new Skill("Rage", 3, def+90));
+        skills.add(new Skill("Rage", 3, def+150));
     }
 
 
